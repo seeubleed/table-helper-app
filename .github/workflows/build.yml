@@ -1,0 +1,40 @@
+name: Build Electron App
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: macos-latest # Используется для сборки macOS
+    strategy:
+      matrix:
+        platform: [mac, win]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14' # Укажите версию Node.js
+
+      - name: Install dependencies
+        run: |
+          npm install
+          npm run build
+
+      - name: Build Electron app for ${{ matrix.platform }}
+        run: |
+          if [ "${{ matrix.platform }}" == "mac" ]; then
+            npm run electron-builder --mac
+          else
+            npm run electron-builder --win
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
