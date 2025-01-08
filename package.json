@@ -1,0 +1,51 @@
+{
+  "name": "table_helper_app",
+  "version": "0.4.0",
+  "description": "Обработчик xlsx файлов",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "author": "seeubleed",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@electron/remote": "^2.1.2",
+    "exceljs": "^4.4.0",
+    "luxon": "^3.5.0",
+    "winston": "^3.17.0"
+  },
+  "devDependencies": {
+    "7zip-bin": "^5.2.0",
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "https://t.me/seeubleed",
+    "productName": "table_helper_app",
+    "files": [
+      "src/main.js",
+      "src/preload.js",
+      "src/renderer.js",
+      "src/logger.js",
+      "src/html/index.html",
+      "src/styles/styles.css",
+      "node_modules/**",
+      "src/**"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "src/icons/icon.ico"
+    },
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "category": "public.app-category.utilities"
+    }
+  }
+}

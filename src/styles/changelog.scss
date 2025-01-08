@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+/* Переменные для удобства */
+$primary-color: #0073e6;
+$secondary-color: #f9f9f9;
+$text-color: #333;
+$border-color: #ddd;
+$font-family: 'Roboto', sans-serif;
+
+/* Сброс общих стилей */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: $font-family;
+}
+
+body {
+  background-color: #fff;
+  color: $text-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  width: 80%;
+  max-width: 600px;
+  background-color: $secondary-color;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+
+  /* Заголовок */
+  .header {
+    background-color: $primary-color;
+    color: white;
+    text-align: center;
+    padding: 15px;
+
+    h1 {
+      font-size: 20px;
+      font-weight: 500;
+    }
+  }
+
+  /* Контент */
+  .content {
+    padding: 20px;
+
+    h2 {
+      font-size: 18px;
+      color: $primary-color;
+      margin-bottom: 10px;
+      border-bottom: 2px solid $primary-color;
+      padding-bottom: 5px;
+    }
+
+    ul {
+      list-style: none;
+      margin: 10px 0;
+      padding: 0;
+
+      li {
+        margin-bottom: 8px;
+        padding-left: 10px;
+        position: relative;
+        font-size: 14px;
+
+        &::before {
+          content: '•';
+          position: absolute;
+          left: 0;
+          color: $primary-color;
+          font-size: 16px;
+        }
+      }
+    }
+
+    p {
+      font-size: 14px;
+      margin-top: 10px;
+      color: darken($text-color, 20%);
+      text-align: justify;
+    }
+  }
+
+  /* Футер */
+  .footer {
+    text-align: center;
+    background-color: lighten($secondary-color, 5%);
+    padding: 10px;
+    font-size: 12px;
+    color: darken($text-color, 40%);
+    border-top: 1px solid $border-color;
+  }
+}

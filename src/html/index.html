@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/styles.css" />
+    <title>TableHelper</title>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <!-- <img src="./src/icons/icon32.png" alt="logo" class="logo" /> -->
+        <h1>Table Helper</h1>
+
+        <div id="window-controls" class="window-controls">
+          <button id="minimize" class="control-btn">-</button>
+          <button id="close" class="control-btn">×</button>
+        </div>
+      </header>
+
+      <main>
+        <div class="controls">
+          <button id="processButton" class="btn">Обработать файл</button>
+          <div id="loading" class="loading" style="display: none">
+            <div class="spinner"></div>
+            <p>Обработка файла...</p>
+          </div>
+        </div>
+
+        <div class="options">
+          <h2>Настройки обработки</h2>
+
+          <div class="option-group">
+            <label>
+              <input type="checkbox" id="toggle-higlight" />
+              Подсветка дублирующих строк
+            </label>
+          </div>
+
+          <div class="option-group">
+            <label>
+              <input type="checkbox" id="toggle-higlight-correct" />
+              Подсветка "Нет, Спорно"
+            </label>
+          </div>
+
+          <div class="option-group">
+            <label>
+              <input type="checkbox" id="toggle-column-correct" />
+              Перемещение "Correct/Mistake" в конец
+            </label>
+          </div>
+
+          <div class="option-group">
+            <label>
+              <input type="checkbox" id="toggle-column-comment" /> Перемещение комментариев в конец
+            </label>
+          </div>
+
+          <div class="option-group">
+            <label>
+              <input type="checkbox" id="toggle-column-rename" /> Переименовать заголовки (можно настроить в "options.json")
+            </label>
+          </div>
+
+        <div class="output-box">
+          <p id="output" class="output">Результат обработки будет здесь...</p>
+        </div>
+      </main>
+
+      <footer class="footer">
+        <p>Версия: v0.5</p>
+        <p class="help">
+          For help & bugs, contact
+          <a href="https://t.me/seeubleed" target="_blank">t.me/seeubleed</a>
+        </p>
+      </footer>
+    </div>
+    <script src="../renderer.js"></script>
+  </body>
+</html>
