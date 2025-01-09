@@ -38,15 +38,24 @@
       "output": "dist"
     },
     "win": {
-      "target": "nsis",
-      "icon": "src/icons/icon.ico"
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ]
     },
     "mac": {
       "target": [
-        "dmg",
-        "zip"
+        "dmg"
       ],
-      "category": "public.app-category.utilities"
+      "category": "public.app-category.utilities",
+      "hardenedRuntime": true,
+      "entitlements": "build/entitlements.mac.plist",
+      "entitlementsInherit": "build/entitlements.mac.plist"
     }
   }
 }
