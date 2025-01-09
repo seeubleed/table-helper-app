@@ -33,9 +33,9 @@ jobs:
       - name: Build Electron app for ${{ matrix.platform }}
         run: |
           if [ "${{ matrix.platform }}" == "mac" ]; then
-            npm run electron-builder --mac
+            npm run build -- --mac
           else
-            npm run electron-builder --win
+            npm run build -- --win
           fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

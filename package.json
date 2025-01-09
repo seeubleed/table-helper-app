@@ -5,7 +5,8 @@
   "main": "src/main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder"
+    "build": "electron-builder",
+    "electron-builder": "electron-builder"
   },
   "author": "seeubleed",
   "license": "Apache-2.0",
