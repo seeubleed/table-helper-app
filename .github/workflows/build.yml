@@ -27,8 +27,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Fix permissions for electron-builder
-        run: chmod +x ./node_modules/.bin/electron-builder
+      - name: Fix permissions for app-builder and electron-builder
+        run: |
+          chmod +x ./node_modules/app-builder-bin/mac/app-builder_arm64
+          chmod +x ./node_modules/.bin/electron-builder
 
       - name: Build Electron app for ${{ matrix.platform }}
         run: |
