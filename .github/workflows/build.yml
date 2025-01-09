@@ -3,7 +3,7 @@ name: Build and Release Electron App
 on:
   push:
     tags:
-      - 'v*' # Запуск при пуше тега, соответствующего шаблону версии
+      - 'v*'
 
 jobs:
   build:
@@ -13,27 +13,22 @@ jobs:
         platform: [mac, win]
 
     steps:
-      # Клонирование репозитория
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Настройка Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '20'
 
-      # Установка зависимостей
       - name: Install dependencies
         run: npm install
 
-      # Исправление разрешений для файлов сборки
       - name: Fix permissions for app-builder and electron-builder
         run: |
           chmod +x ./node_modules/app-builder-bin/mac/app-builder_arm64
           chmod +x ./node_modules/.bin/electron-builder
 
-      # Сборка приложения для macOS или Windows
       - name: Build Electron app for ${{ matrix.platform }}
         run: |
           if [ "${{ matrix.platform }}" == "mac" ]; then
@@ -44,9 +39,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # Загрузка артефактов
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.platform }}-build
           path: dist/
@@ -56,11 +50,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Клонирование репозитория
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Создание релиза
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
