@@ -31,6 +31,8 @@ jobs:
 
       - name: Build Electron app with debug logs
         run: |
-          DEBUG=electron-builder npm run build -- --${{ matrix.platform }}
+          npm install
+              npm run build -- --publish=never
+
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
