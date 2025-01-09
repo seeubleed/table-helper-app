@@ -14,36 +14,35 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: '20'
 
       - name: Install dependencies
         run: npm install
 
-      - name: Fix permissions for app-builder and electron-builder
-        run: |
-          chmod +x ./node_modules/app-builder-bin/mac/app-builder_arm64
-          chmod +x ./node_modules/.bin/electron-builder
-
       - name: Build Electron app for ${{ matrix.platform }}
         run: |
           if [ "${{ matrix.platform }}" == "mac" ]; then
-            npm run electron-builder -- --mac
+            npm run electron-builder -- --mac --publish never
           else
             npm run electron-builder -- --win
           fi
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Remove Gatekeeper quarantine flag (macOS)
+        run: |
+          sudo xattr -dr com.apple.quarantine dist/*.app
 
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.platform }}-build
-          path: dist/*
+          name: build-artifacts
+          path: dist/
 
   release:
     needs: build
@@ -51,17 +50,18 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Download build artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
-          name: mac-build
+          name: build-artifacts
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          files: dist/*
+          files: |
+            dist/*.dmg
+            dist/*.exe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
