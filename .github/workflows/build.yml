@@ -6,7 +6,7 @@ on:
       - 'v*'
 
 jobs:
-  release:
+  build:
     runs-on: macos-latest
     strategy:
       matrix:
@@ -29,10 +29,12 @@ jobs:
           chmod +x ./node_modules/app-builder-bin/mac/app-builder_arm64
           chmod +x ./node_modules/.bin/electron-builder
 
-      - name: Build Electron app with debug logs
+      - name: Build Electron app for ${{ matrix.platform }}
         run: |
-          npm install
-              npm run build -- --publish=never
-
+          if [ "${{ matrix.platform }}" == "mac" ]; then
+            npm run build -- --mac
+          else
+            npm run build -- --win
+          fi
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
