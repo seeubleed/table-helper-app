@@ -13,75 +13,85 @@ jobs:
         platform: [mac, win]
 
     steps:
+      # Checkout repository
       - name: Checkout code
         uses: actions/checkout@v2
 
+      # Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '20'
 
+      # Install dependencies
       - name: Install dependencies
         run: npm install
 
+      # Fix permissions
       - name: Fix permissions for app-builder and electron-builder
         run: |
           chmod +x ./node_modules/app-builder-bin/mac/app-builder_arm64
           chmod +x ./node_modules/.bin/electron-builder
 
+      # Build the app for the specific platform
       - name: Build Electron app for ${{ matrix.platform }}
         run: |
           if [ "${{ matrix.platform }}" == "mac" ]; then
-            npm run electron-builder -- --mac
+            npm run electron-builder -- --mac --publish never
           else
-            npm run electron-builder -- --win
+            npm run electron-builder -- --win --publish never
           fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Remove Gatekeeper quarantine flag (macOS)
-        if: matrix.platform == 'mac'
-        run: |
-          if ls dist/*.app 1> /dev/null 2>&1; then
-            sudo xattr -dr com.apple.quarantine dist/*.app
-          else
-            echo "No .app files found, skipping xattr command."
-          fi
+      # Verify build output
+      - name: Verify build output
+        run: ls -l dist/
 
-      - name: Upload build artifacts
+      # Upload macOS build artifacts
+      - name: Upload macOS build artifacts
+        if: matrix.platform == 'mac'
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.platform }}-build
-          path: dist/
+          name: mac-build
+          path: dist/*.dmg
+
+      # Upload Windows build artifacts
+      - name: Upload Windows build artifacts
+        if: matrix.platform == 'win'
+        uses: actions/upload-artifact@v4
+        with:
+          name: win-build
+          path: dist/*.exe
 
   release:
     needs: build
     runs-on: ubuntu-latest
 
     steps:
+      # Checkout repository
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Download macOS build artifacts
-        if: ${{ matrix.platform == 'mac' }}
+      # Download artifacts
+      - name: Download macOS artifacts
         uses: actions/download-artifact@v4
         with:
           name: mac-build
-          path: dist/mac-build
+          path: ./dist/mac
 
-      - name: Download Windows build artifacts
-        if: ${{ matrix.platform == 'win' }}
+      - name: Download Windows artifacts
         uses: actions/download-artifact@v4
         with:
           name: win-build
-          path: dist/win-build
+          path: ./dist/win
 
-      - name: Create Release
+      # Create GitHub Release
+      - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            dist/mac-build/*.dmg
-            dist/mac-build/*.app
-            dist/win-build/*.exe
+            dist/mac/*.dmg
+            dist/win/*.exe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
