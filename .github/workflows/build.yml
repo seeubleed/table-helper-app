@@ -14,28 +14,25 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v2
         with:
           node-version: '20'
 
       - name: Install dependencies
         run: npm install
 
-      - name: Fix permissions for electron-builder
-        run: |
-          chmod +x ./node_modules/.bin/electron-builder
-
-      - name: Fix permissions for app-builder
+      - name: Fix permissions for app-builder and electron-builder
         run: |
           chmod +x ./node_modules/app-builder-bin/mac/app-builder_arm64
+          chmod +x ./node_modules/.bin/electron-builder
 
       - name: Build Electron app for ${{ matrix.platform }}
         run: |
           if [ "${{ matrix.platform }}" == "mac" ]; then
-            npm run electron-builder -- --mac --publish never
+            npm run electron-builder -- --mac
           else
             npm run electron-builder -- --win
           fi
@@ -43,13 +40,18 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Remove Gatekeeper quarantine flag (macOS)
+        if: matrix.platform == 'mac'
         run: |
-          sudo xattr -dr com.apple.quarantine dist/*.app
+          if ls dist/*.app 1> /dev/null 2>&1; then
+            sudo xattr -dr com.apple.quarantine dist/*.app
+          else
+            echo "No .app files found, skipping xattr command."
+          fi
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: build-artifacts
+          name: ${{ matrix.platform }}-build
           path: dist/
 
   release:
@@ -58,18 +60,28 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
-      - name: Download build artifacts
-        uses: actions/download-artifact@v4
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
         with:
-          name: build-artifacts
+          name: mac-build
+          path: dist/mac-build
+        if: matrix.platform == 'mac'
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: win-build
+          path: dist/win-build
+        if: matrix.platform == 'win'
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            dist/*.dmg
-            dist/*.exe
+            dist/mac-build/*.dmg
+            dist/mac-build/*.app
+            dist/win-build/*.exe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
