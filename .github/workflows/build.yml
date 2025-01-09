@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest # Используется для сборки macOS
+    runs-on: macos-latest
     strategy:
       matrix:
         platform: [mac, win]
@@ -22,12 +22,13 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '20' # Укажите версию Node.js
+          node-version: '20'
 
       - name: Install dependencies
-        run: |
-          npm install
-          npm run build
+        run: npm install
+
+      - name: Fix permissions for electron-builder
+        run: chmod +x ./node_modules/.bin/electron-builder
 
       - name: Build Electron app for ${{ matrix.platform }}
         run: |
