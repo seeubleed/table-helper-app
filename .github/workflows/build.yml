@@ -28,6 +28,10 @@ jobs:
         run: |
           chmod +x ./node_modules/.bin/electron-builder
 
+      - name: Fix permissions for app-builder
+        run: |
+          chmod +x ./node_modules/app-builder-bin/mac/app-builder_arm64
+
       - name: Build Electron app for ${{ matrix.platform }}
         run: |
           if [ "${{ matrix.platform }}" == "mac" ]; then
