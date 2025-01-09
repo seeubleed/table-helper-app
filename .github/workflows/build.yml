@@ -1,9 +1,12 @@
-name: Build and Release Electron App
+name: Build Electron App
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
@@ -32,32 +35,9 @@ jobs:
       - name: Build Electron app for ${{ matrix.platform }}
         run: |
           if [ "${{ matrix.platform }}" == "mac" ]; then
-            npm run electron-builder -- --mac
+            npm run build -- --mac
           else
-            npm run electron-builder -- --win
+            npm run build -- --win
           fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: ${{ matrix.platform }}-build
-          path: dist/
-
-  release:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Create Release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: |
-            dist/*.dmg
-            dist/*.exe
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
