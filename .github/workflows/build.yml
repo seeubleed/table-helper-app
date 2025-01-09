@@ -22,7 +22,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14' # Укажите версию Node.js
+          node-version: '20' # Укажите версию Node.js
 
       - name: Install dependencies
         run: |
