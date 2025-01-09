@@ -37,13 +37,13 @@ jobs:
             npm run electron-builder -- --win
           fi
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.platform }}-build
-          path: dist/
+          path: dist/*
 
   release:
     needs: build
@@ -53,11 +53,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: mac-build
+
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          files: |
-            dist/*.dmg
-            dist/*.exe
+          files: dist/*
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
