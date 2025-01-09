@@ -1,9 +1,12 @@
-name: Build and Release
+name: Build Electron App
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
