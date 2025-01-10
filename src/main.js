@@ -19,10 +19,6 @@ const { setStaticColWidth } = require('./utils/colWidth')
 const { setFontSize, setHeaderHeight } = require('./utils/fontSize')
 const updateDates = require('./utils/formatDate')
 
-const renameMapPath = path.join(process.cwd(), 'options.json')
-
-const renameMap = loadRenameMap(renameMapPath)
-
 const stateFilePath = path.join(process.cwd(), 'settings.json')
 
 ipcMain.handle('save-checkbox-state', async (event, state) => {
@@ -156,8 +152,6 @@ ipcMain.handle('process-file', async (event, filePath, toggleColumnCorrect, togg
     await processWorksheet(worksheet)
 
     removeColumns(worksheet, validatorAnswerIndex, assessorAnswerIndex, projectToValIndex, valProjectdIndex, valTaskIdIndex, taskExtIdIndex)
-
-    // renameColumns(worksheet, renameMap.Map)
 
     logger.info('trying to save a temp file')
     const tempDir = os.tmpdir()
