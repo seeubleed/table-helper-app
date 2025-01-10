@@ -157,7 +157,7 @@ ipcMain.handle('process-file', async (event, filePath, toggleColumnCorrect, togg
 
     removeColumns(worksheet, validatorAnswerIndex, assessorAnswerIndex, projectToValIndex, valProjectdIndex, valTaskIdIndex, taskExtIdIndex)
 
-    renameColumns(worksheet, renameMap.Map)
+    // renameColumns(worksheet, renameMap.Map)
 
     logger.info('trying to save a temp file')
     const tempDir = os.tmpdir()

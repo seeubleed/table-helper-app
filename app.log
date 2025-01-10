@@ -290,3 +290,34 @@
 09-01-2025 03:58:17 [info]: Приложение завершено
 09-01-2025 22:12:23 [info]: Главное окно загружено
 09-01-2025 22:12:26 [info]: Приложение завершено
+10-01-2025 23:43:34 [info]: Главное окно загружено
+10-01-2025 23:43:35 [info]: Выбор файла
+10-01-2025 23:43:37 [info]: Выбранный файл: C:\Users\Seeubleed\Desktop\repsys_validation_1275_2025_01_10.xlsx
+10-01-2025 23:43:37 [info]: Колонки 12, 11, 8, 7, 6, 5 успешно удалены.
+10-01-2025 23:43:37 [info]: trying to save a temp file
+10-01-2025 23:43:38 [info]: temp file saved: C:\Users\SEEUBL~1\AppData\Local\Temp\temp_1736534617930.xlsx
+10-01-2025 23:43:38 [info]: trying to save
+10-01-2025 23:43:41 [info]: Сохранение было отменено пользователем.
+10-01-2025 23:43:42 [info]: Приложение завершено
+10-01-2025 23:43:49 [info]: Главное окно загружено
+10-01-2025 23:43:51 [info]: Выбор файла
+10-01-2025 23:43:52 [info]: Выбранный файл: C:\Users\Seeubleed\Desktop\repsys_validation_1275_2025_01_10.xlsx
+10-01-2025 23:43:52 [info]: Колонки 12, 11, 8, 7, 6, 5 успешно удалены.
+10-01-2025 23:43:52 [info]: trying to save a temp file
+10-01-2025 23:43:52 [info]: temp file saved: C:\Users\SEEUBL~1\AppData\Local\Temp\temp_1736534632850.xlsx
+10-01-2025 23:43:52 [info]: trying to save
+10-01-2025 23:43:57 [info]: Сохранение было отменено пользователем.
+10-01-2025 23:44:01 [info]: Выбор файла
+10-01-2025 23:44:03 [info]: Выбранный файл: C:\Users\Seeubleed\Desktop\repsys_validation_1275_2025_01_10.xlsx
+10-01-2025 23:44:03 [info]: no columns found: "validator_Причина"
+10-01-2025 23:44:03 [info]: skipping
+10-01-2025 23:44:03 [info]: no columns found: "validator_Причина по стоимости"
+10-01-2025 23:44:03 [info]: skipping
+10-01-2025 23:44:03 [info]: no columns found: "reason_by_validator"
+10-01-2025 23:44:03 [info]: skipping
+10-01-2025 23:44:03 [info]: Колонки 12, 11, 8, 7, 6, 5 успешно удалены.
+10-01-2025 23:44:03 [info]: trying to save a temp file
+10-01-2025 23:44:03 [info]: temp file saved: C:\Users\SEEUBL~1\AppData\Local\Temp\temp_1736534643322.xlsx
+10-01-2025 23:44:03 [info]: trying to save
+10-01-2025 23:44:10 [info]: Сохранение было отменено пользователем.
+10-01-2025 23:44:14 [info]: Приложение завершено
