@@ -8,7 +8,7 @@ function Initialize() {
   try {
     mainWindow = new BrowserWindow({
       width: 800,
-      height: 530,
+      height: 470,
       frame: false,
       resizable: false,
       icon: path.join(`${__dirname}/../icons/icon.ico`),
