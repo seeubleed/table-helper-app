@@ -6,7 +6,7 @@ const path = require('path')
 const ExcelJS = require('exceljs')
 
 const logger = require('./logger')
-const { Initialize } = require('./windows/mainWindow')
+const { Initialize, getMainWindow } = require('./windows/mainWindow')
 const handleSelectFile = require('./utils/selectFile')
 const handleSaveFile = require('./utils/saveFile')
 const processWorksheet = require('./sheets/mod')
@@ -63,7 +63,7 @@ app.on('ready', () => {
 
   autoUpdater.on('update-available', info => {
     logger.info(`Доступно обновление: версия ${info.version}`)
-    mainWindow.webContents.send('update_available')
+    getMainWindow.webContents.send('update_available')
   })
 
   autoUpdater.on('update-not-available', info => {
@@ -80,7 +80,7 @@ app.on('ready', () => {
 
   autoUpdater.on('update-downloaded', () => {
     logger.info('Обновление загружено.')
-    mainWindow.webContents.send('update_downloaded')
+    getMainWindow.webContents.send('update_downloaded')
   })
 })
 
