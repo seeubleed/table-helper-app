@@ -52,19 +52,20 @@ ipcMain.handle('load-checkbox-state', async () => {
 
 app.on('ready', () => {
   Initialize()
+
   autoUpdater.checkForUpdatesAndNotify()
+
+  autoUpdater.on('update-available', () => {
+    mainWindow.webContents.send('update_available')
+    logger.info('Обновление доступно')
+  })
+
+  autoUpdater.on('update-downloaded', () => {
+    mainWindow.webContents.send('update_downloaded')
+    logger.info('Обновление скачивается')
+  })
 })
 
-// Обработка событий автообновлений
-autoUpdater.on('update-available', () => {
-  mainWindow.webContents.send('update_available')
-})
-
-autoUpdater.on('update-downloaded', () => {
-  mainWindow.webContents.send('update_downloaded')
-})
-
-// Обработка перезапуска приложения
 ipcMain.on('restart_app', () => {
   autoUpdater.quitAndInstall()
 })

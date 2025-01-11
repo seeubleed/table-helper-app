@@ -6,21 +6,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const notificationArea = document.getElementById('notification-area')
 
-  // Событие: доступно обновление
   globalThis.electronAPI.onUpdateAvailable(() => {
-    const notification = document.createElement('div')
-    notification.innerText = 'Доступно обновление! Оно скоро будет загружено.'
-    notificationArea.appendChild(notification)
+    notificationArea.innerHTML = '<p>Доступно обновление! Оно скоро будет загружено.</p>'
   })
 
-  // Событие: обновление загружено
   globalThis.electronAPI.onUpdateDownloaded(() => {
-    const notification = document.createElement('div')
-    notification.innerHTML = `
+    notificationArea.innerHTML = `
       <p>Обновление загружено. Перезапустите приложение, чтобы применить его.</p>
       <button id="restart-button">Перезапустить</button>
     `
-    notificationArea.appendChild(notification)
 
     document.getElementById('restart-button').addEventListener('click', () => {
       globalThis.electronAPI.restartApp()

@@ -9,6 +9,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
   closeWindow: () => ipcRenderer.send('window-close'),
   saveCheckboxState: state => ipcRenderer.invoke('save-checkbox-state', state),
   loadCheckboxState: () => ipcRenderer.invoke('load-checkbox-state'),
+
   onUpdateAvailable: callback => ipcRenderer.on('update_available', callback),
   onUpdateDownloaded: callback => ipcRenderer.on('update_downloaded', callback),
   restartApp: () => ipcRenderer.send('restart_app'),
