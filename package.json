@@ -25,14 +25,10 @@
     "appId": "https://t.me/seeubleed",
     "productName": "table_helper_app",
     "files": [
-      "src/main.js",
-      "src/preload.js",
-      "src/renderer.js",
-      "src/logger.js",
+      "src/**/*",
+      "node_modules/**/*",
       "src/html/index.html",
-      "src/styles/styles.css",
-      "node_modules/**",
-      "src/**"
+      "src/styles/styles.css"
     ],
     "directories": {
       "output": "dist"

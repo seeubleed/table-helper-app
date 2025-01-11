@@ -70,3 +70,18 @@
 11-01-2025 12:42:05 [info]: trying to save
 11-01-2025 12:42:06 [info]: Файл успешно обработан и сохранён в C:\Users\Seeubleed\Desktop\table_11 01 2025  12 42 05.xlsx
 11-01-2025 12:46:00 [info]: Приложение завершено
+11-01-2025 13:01:26 [info]: Главное окно загружено
+11-01-2025 13:01:27 [info]: Выбор файла
+11-01-2025 13:01:29 [info]: Выбранный файл: C:\Users\Seeubleed\Desktop\repsys_validation_1275_2025_01_10.xlsx
+11-01-2025 13:01:29 [info]: no columns found: "validator_Причина"
+11-01-2025 13:01:29 [info]: skipping
+11-01-2025 13:01:29 [info]: no columns found: "validator_Причина по стоимости"
+11-01-2025 13:01:29 [info]: skipping
+11-01-2025 13:01:29 [info]: no columns found: "reason_by_validator"
+11-01-2025 13:01:29 [info]: skipping
+11-01-2025 13:01:29 [info]: Колонки 12, 11, 8, 7, 6, 5 успешно удалены.
+11-01-2025 13:01:29 [info]: trying to save a temp file
+11-01-2025 13:01:29 [info]: temp file saved: C:\Users\SEEUBL~1\AppData\Local\Temp\temp_1736582489614.xlsx
+11-01-2025 13:01:29 [info]: trying to save
+11-01-2025 13:01:30 [info]: Файл успешно обработан и сохранён в C:\Users\Seeubleed\Desktop\table_11 01 2025  13 01 29.xlsx
+11-01-2025 13:01:32 [info]: Приложение завершено
