@@ -4,6 +4,29 @@ document.addEventListener('DOMContentLoaded', async () => {
   const loadingIndicator = document.getElementById('loading')
   const btn = document.getElementById('processButton')
 
+  const notificationArea = document.getElementById('notification-area')
+
+  // Событие: доступно обновление
+  globalThis.electronAPI.onUpdateAvailable(() => {
+    const notification = document.createElement('div')
+    notification.innerText = 'Доступно обновление! Оно скоро будет загружено.'
+    notificationArea.appendChild(notification)
+  })
+
+  // Событие: обновление загружено
+  globalThis.electronAPI.onUpdateDownloaded(() => {
+    const notification = document.createElement('div')
+    notification.innerHTML = `
+      <p>Обновление загружено. Перезапустите приложение, чтобы применить его.</p>
+      <button id="restart-button">Перезапустить</button>
+    `
+    notificationArea.appendChild(notification)
+
+    document.getElementById('restart-button').addEventListener('click', () => {
+      globalThis.electronAPI.restartApp()
+    })
+  })
+
   const checkboxIds = ['toggle-higlight', 'toggle-column-correct', 'toggle-column-comment', 'toggle-higlight-correct', 'toggle-switch_mode_links', 'toggle-switch_mode_links_change']
 
   const savedState = await globalThis.electronAPI.loadCheckboxState()

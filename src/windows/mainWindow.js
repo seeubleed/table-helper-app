@@ -1,4 +1,4 @@
-const { BrowserWindow } = require('electron')
+const { BrowserWindow, app } = require('electron')
 const path = require('path')
 const logger = require('../logger')
 

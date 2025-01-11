@@ -1,4 +1,5 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
+const { autoUpdater } = require('electron-updater')
 const fs = require('fs')
 const os = require('os')
 const path = require('path')
@@ -51,6 +52,21 @@ ipcMain.handle('load-checkbox-state', async () => {
 
 app.on('ready', () => {
   Initialize()
+  autoUpdater.checkForUpdatesAndNotify()
+})
+
+// Обработка событий автообновлений
+autoUpdater.on('update-available', () => {
+  mainWindow.webContents.send('update_available')
+})
+
+autoUpdater.on('update-downloaded', () => {
+  mainWindow.webContents.send('update_downloaded')
+})
+
+// Обработка перезапуска приложения
+ipcMain.on('restart_app', () => {
+  autoUpdater.quitAndInstall()
 })
 
 app.on('window-all-closed', () => {
