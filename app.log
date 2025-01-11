@@ -1,329 +1,72 @@
-17-12-2024 11:53:01 [info]: Главное окно загружено
-17-12-2024 11:53:02 [info]: Выбор файла
-17-12-2024 11:53:04 [info]: Выбранный файл: C:\Users\Seeubleed\Desktop\1x.xlsx
-17-12-2024 11:53:04 [info]: Столбик "validator_Причина" не найден.
-17-12-2024 11:53:04 [info]: Не нейдено столбиков для перемещения, пропуск.
-17-12-2024 11:53:04 [info]: Столбик "validator_Причина по стоимости" не найден.
-17-12-2024 11:53:04 [info]: Не нейдено столбиков для перемещения, пропуск.
-17-12-2024 11:53:04 [info]: Столбик "reason_by_validator" не найден.
-17-12-2024 11:53:04 [info]: Не нейдено столбиков для перемещения, пропуск.
-17-12-2024 11:53:04 [info]: Колонки 12, 11, 8, 7, 6, 5 успешно удалены.
-17-12-2024 11:53:04 [info]: trying to save a temp file
-17-12-2024 11:53:04 [info]: temp file saved: C:\Users\SEEUBL~1\AppData\Local\Temp\temp_1734418384660.xlsx
-17-12-2024 11:53:04 [info]: Попытка сохранить.
-17-12-2024 11:53:05 [info]: Сохранение файла по пути:
-17-12-2024 11:53:05 [info]: Удаление временного файла.
-17-12-2024 11:53:05 [info]: Файл успешно обработан и сохранён в C:\Users\Seeubleed\Desktop\table_17.12.2024..11.53.04.xlsx
-17-12-2024 11:53:07 [info]: Приложение завершено
-17-12-2024 11:56:07 [info]: Главное окно загружено
-17-12-2024 11:56:07 [info]: Выбор файла
-17-12-2024 11:56:10 [info]: Выбранный файл: C:\Users\Seeubleed\Desktop\1x.xlsx
-17-12-2024 11:56:10 [info]: no columns found: "validator_Причина"
-17-12-2024 11:56:10 [info]: no columns found, skipping
-17-12-2024 11:56:10 [info]: no columns found: "validator_Причина по стоимости"
-17-12-2024 11:56:10 [info]: no columns found, skipping
-17-12-2024 11:56:10 [info]: no columns found: "reason_by_validator"
-17-12-2024 11:56:10 [info]: no columns found, skipping
-17-12-2024 11:56:10 [info]: Колонки 12, 11, 8, 7, 6, 5 успешно удалены.
-17-12-2024 11:56:10 [info]: trying to save a temp file
-17-12-2024 11:56:10 [info]: temp file saved: C:\Users\SEEUBL~1\AppData\Local\Temp\temp_1734418570349.xlsx
-17-12-2024 11:56:10 [info]: Попытка сохранить.
-17-12-2024 11:56:11 [info]: Сохранение файла по пути:
-17-12-2024 11:56:11 [info]: Удаление временного файла.
-17-12-2024 11:56:11 [info]: Файл успешно обработан и сохранён в C:\Users\Seeubleed\Desktop\table_17.12.2024..11.56.10.xlsx
-17-12-2024 11:56:12 [info]: Приложение завершено
-17-12-2024 11:56:55 [info]: Главное окно загружено
-17-12-2024 11:56:56 [info]: Выбор файла
-17-12-2024 11:56:57 [info]: Выбранный файл: C:\Users\Seeubleed\Desktop\1x.xlsx
-17-12-2024 11:56:58 [info]: no columns found: "validator_Причина"
-17-12-2024 11:56:58 [info]: skipping
-17-12-2024 11:56:58 [info]: no columns found: "validator_Причина по стоимости"
-17-12-2024 11:56:58 [info]: skipping
-17-12-2024 11:56:58 [info]: no columns found: "reason_by_validator"
-17-12-2024 11:56:58 [info]: skipping
-17-12-2024 11:56:58 [info]: Колонки 12, 11, 8, 7, 6, 5 успешно удалены.
-17-12-2024 11:56:58 [info]: trying to save a temp file
-17-12-2024 11:56:58 [info]: temp file saved: C:\Users\SEEUBL~1\AppData\Local\Temp\temp_1734418618178.xlsx
-17-12-2024 11:56:58 [info]: Попытка сохранить.
-17-12-2024 11:56:59 [info]: Сохранение файла по пути:
-17-12-2024 11:56:59 [info]: Удаление временного файла.
-17-12-2024 11:56:59 [info]: Файл успешно обработан и сохранён в C:\Users\Seeubleed\Desktop\table_17.12.2024..11.56.58.xlsx
-17-12-2024 11:57:00 [info]: Приложение завершено
-17-12-2024 11:57:40 [info]: Главное окно загружено
-17-12-2024 11:57:40 [info]: Выбор файла
-17-12-2024 11:57:42 [info]: Выбранный файл: C:\Users\Seeubleed\Desktop\1x.xlsx
-17-12-2024 11:57:42 [info]: no columns found: "validator_Причина"
-17-12-2024 11:57:42 [info]: skipping
-17-12-2024 11:57:42 [info]: no columns found: "validator_Причина по стоимости"
-17-12-2024 11:57:42 [info]: skipping
-17-12-2024 11:57:42 [info]: no columns found: "reason_by_validator"
-17-12-2024 11:57:42 [info]: skipping
-17-12-2024 11:57:42 [info]: Колонки 12, 11, 8, 7, 6, 5 успешно удалены.
-17-12-2024 11:57:42 [info]: trying to save a temp file
-17-12-2024 11:57:42 [info]: temp file saved: C:\Users\SEEUBL~1\AppData\Local\Temp\temp_1734418662798.xlsx
-17-12-2024 11:57:42 [info]: Попытка сохранить.
-17-12-2024 11:57:44 [info]: Сохранение файла по пути:
-17-12-2024 11:57:44 [info]: Удаление временного файла.
-17-12-2024 11:57:44 [info]: Файл успешно обработан и сохранён в C:\Users\Seeubleed\Desktop\table_17 12 2024  11 57 42.xlsx
-17-12-2024 11:57:58 [info]: Приложение завершено
-17-12-2024 14:17:35 [info]: Главное окно загружено
-17-12-2024 14:22:56 [info]: Приложение завершено
-17-12-2024 14:23:01 [info]: Главное окно загружено
-17-12-2024 14:23:05 [info]: Приложение завершено
-17-12-2024 14:23:13 [info]: Главное окно загружено
-17-12-2024 14:24:00 [info]: Приложение завершено
-17-12-2024 14:40:37 [info]: Главное окно загружено
-17-12-2024 14:40:41 [info]: Выбор файла
-17-12-2024 14:40:44 [info]: Выбранный файл: C:\Users\Seeubleed\Desktop\repsys_validation_1275_2024_12_17.xlsx
-17-12-2024 14:40:44 [info]: Колонки 12, 11, 8, 7, 6, 5 успешно удалены.
-17-12-2024 14:40:44 [info]: trying to save a temp file
-17-12-2024 14:40:44 [info]: temp file saved: C:\Users\SEEUBL~1\AppData\Local\Temp\temp_1734428444581.xlsx
-17-12-2024 14:40:44 [info]: trying to save
-17-12-2024 14:40:46 [info]: Сохранение файла по пути:
-17-12-2024 14:40:46 [info]: Удаление временного файла.
-17-12-2024 14:40:46 [info]: Файл успешно обработан и сохранён в C:\Users\Seeubleed\Desktop\table_17 12 2024  14 40 44.xlsx
-17-12-2024 14:44:54 [info]: Приложение завершено
-17-12-2024 14:45:02 [info]: Главное окно загружено
-17-12-2024 14:45:03 [info]: Выбор файла
-17-12-2024 14:45:06 [info]: Выбранный файл: C:\Users\Seeubleed\Desktop\repsys_validation_1275_2024_12_17.xlsx
-17-12-2024 14:45:06 [info]: Колонки 12, 11, 8, 7, 6, 5 успешно удалены.
-17-12-2024 14:45:06 [info]: trying to save a temp file
-17-12-2024 14:45:06 [info]: temp file saved: C:\Users\SEEUBL~1\AppData\Local\Temp\temp_1734428706306.xlsx
-17-12-2024 14:45:06 [info]: trying to save
-17-12-2024 14:45:07 [info]: Сохранение файла по пути:
-17-12-2024 14:45:07 [info]: Удаление временного файла.
-17-12-2024 14:45:07 [info]: Файл успешно обработан и сохранён в C:\Users\Seeubleed\Desktop\table_17 12 2024  14 45 06.xlsx
-17-12-2024 14:45:08 [info]: Приложение завершено
-17-12-2024 15:06:05 [info]: Главное окно загружено
-17-12-2024 15:06:09 [info]: Выбор файла
-17-12-2024 15:06:11 [info]: Выбранный файл: C:\Users\Seeubleed\Desktop\repsys_validation_1275_2024_12_17 (1).xlsx
-17-12-2024 15:06:11 [info]: Колонки 12, 11, 8, 7, 6, 5 успешно удалены.
-17-12-2024 15:06:11 [info]: trying to save a temp file
-17-12-2024 15:06:12 [info]: temp file saved: C:\Users\SEEUBL~1\AppData\Local\Temp\temp_1734429971972.xlsx
-17-12-2024 15:06:12 [info]: trying to save
-17-12-2024 15:06:13 [info]: Сохранение файла по пути:
-17-12-2024 15:06:13 [info]: Удаление временного файла.
-17-12-2024 15:06:13 [info]: Файл успешно обработан и сохранён в C:\Users\Seeubleed\Desktop\table_17 12 2024  15 06 12.xlsx
-17-12-2024 15:06:13 [info]: Приложение завершено
-17-12-2024 21:00:01 [info]: Главное окно загружено
-17-12-2024 21:00:11 [info]: Приложение завершено
-17-12-2024 21:34:13 [info]: Главное окно загружено
-17-12-2024 21:34:14 [info]: Выбор файла
-17-12-2024 21:34:18 [info]: Выбранный файл: C:\Users\Seeubleed\Desktop\repsys_validation_1275_2024_12_17 (1).xlsx
-17-12-2024 21:34:40 [info]: Приложение завершено
-17-12-2024 21:34:44 [info]: Главное окно загружено
-17-12-2024 21:34:45 [info]: Выбор файла
-17-12-2024 21:34:47 [info]: Выбранный файл: C:\Users\Seeubleed\Desktop\repsys_validation_1275_2024_12_17 (1).xlsx
-17-12-2024 21:34:47 [info]: Колонки 12, 11, 8, 7, 6, 5 успешно удалены.
-17-12-2024 21:34:47 [info]: trying to save a temp file
-17-12-2024 21:34:47 [info]: temp file saved: C:\Users\SEEUBL~1\AppData\Local\Temp\temp_1734453287516.xlsx
-17-12-2024 21:34:47 [info]: trying to save
-17-12-2024 21:34:48 [info]: Сохранение файла по пути:
-17-12-2024 21:34:48 [info]: Удаление временного файла.
-17-12-2024 21:34:48 [info]: Файл успешно обработан и сохранён в C:\Users\Seeubleed\Desktop\table_17 12 2024  21 34 47.xlsx
-17-12-2024 21:34:49 [info]: Приложение завершено
-17-12-2024 21:55:31 [info]: Главное окно загружено
-17-12-2024 21:55:33 [info]: Выбор файла
-17-12-2024 21:55:35 [info]: Выбранный файл: C:\Users\Seeubleed\Desktop\repsys_validation_1275_2024_12_17.xlsx
-17-12-2024 21:55:35 [info]: Колонки 12, 11, 8, 7, 6, 5 успешно удалены.
-17-12-2024 21:55:35 [info]: trying to save a temp file
-17-12-2024 21:55:35 [info]: temp file saved: C:\Users\SEEUBL~1\AppData\Local\Temp\temp_1734454535347.xlsx
-17-12-2024 21:55:35 [info]: trying to save
-17-12-2024 21:55:36 [info]: Сохранение файла по пути:
-17-12-2024 21:55:36 [info]: Удаление временного файла.
-17-12-2024 21:55:36 [info]: Файл успешно обработан и сохранён в C:\Users\Seeubleed\Desktop\table_17 12 2024  21 55 35.xlsx
-17-12-2024 23:20:12 [info]: Приложение завершено
-17-12-2024 23:20:21 [info]: Главное окно загружено
-17-12-2024 23:20:22 [info]: Выбор файла
-17-12-2024 23:20:24 [info]: Выбранный файл: C:\Users\Seeubleed\Desktop\repsys_validation_1275_2024_12_17.xlsx
-17-12-2024 23:20:24 [info]: Колонки 12, 11, 8, 7, 6, 5 успешно удалены.
-17-12-2024 23:20:24 [info]: trying to save a temp file
-17-12-2024 23:20:24 [info]: temp file saved: C:\Users\SEEUBL~1\AppData\Local\Temp\temp_1734459624771.xlsx
-17-12-2024 23:20:24 [info]: trying to save
-17-12-2024 23:20:26 [info]: Сохранение файла по пути:
-17-12-2024 23:20:26 [info]: Удаление временного файла.
-17-12-2024 23:20:26 [info]: Файл успешно обработан и сохранён в C:\Users\Seeubleed\Desktop\table_17 12 2024  23 20 24.xlsx
-17-12-2024 23:20:27 [info]: Приложение завершено
-18-12-2024 05:56:27 [info]: Главное окно загружено
-18-12-2024 05:56:28 [info]: Выбор файла
-18-12-2024 05:56:31 [info]: Выбранный файл: C:\Users\Seeubleed\Desktop\repsys_validation_1275_2024_12_17.xlsx
-18-12-2024 05:56:31 [info]: Колонки 12, 11, 8, 7, 6, 5 успешно удалены.
-18-12-2024 05:56:31 [info]: trying to save a temp file
-18-12-2024 05:56:31 [info]: temp file saved: C:\Users\SEEUBL~1\AppData\Local\Temp\temp_1734483391888.xlsx
-18-12-2024 05:56:31 [info]: trying to save
-18-12-2024 05:56:33 [info]: Сохранение файла по пути:
-18-12-2024 05:56:33 [info]: Удаление временного файла.
-18-12-2024 05:56:33 [info]: Файл успешно обработан и сохранён в C:\Users\Seeubleed\Desktop\table_18 12 2024  05 56 31.xlsx
-18-12-2024 06:10:07 [info]: Приложение завершено
-18-12-2024 06:10:34 [info]: Главное окно загружено
-18-12-2024 06:10:35 [info]: Выбор файла
-18-12-2024 06:10:37 [info]: Выбранный файл: C:\Users\Seeubleed\Desktop\repsys_validation_1275_2024_12_17.xlsx
-18-12-2024 06:10:37 [info]: Колонки 12, 11, 8, 7, 6, 5 успешно удалены.
-18-12-2024 06:10:37 [info]: trying to save a temp file
-18-12-2024 06:10:37 [info]: temp file saved: C:\Users\SEEUBL~1\AppData\Local\Temp\temp_1734484237750.xlsx
-18-12-2024 06:10:37 [info]: trying to save
-18-12-2024 06:10:39 [info]: Сохранение файла по пути:
-18-12-2024 06:10:39 [info]: Удаление временного файла.
-18-12-2024 06:10:39 [info]: Файл успешно обработан и сохранён в C:\Users\Seeubleed\Desktop\table_18 12 2024  06 10 37.xlsx
-18-12-2024 06:10:40 [info]: Приложение завершено
-18-12-2024 06:13:20 [info]: Главное окно загружено
-18-12-2024 06:13:21 [info]: Выбор файла
-18-12-2024 06:13:23 [info]: Выбранный файл: C:\Users\Seeubleed\Desktop\repsys_validation_1275_2024_12_17.xlsx
-18-12-2024 06:13:23 [info]: Колонки 12, 11, 8, 7, 6, 5 успешно удалены.
-18-12-2024 06:13:23 [info]: trying to save a temp file
-18-12-2024 06:13:23 [info]: temp file saved: C:\Users\SEEUBL~1\AppData\Local\Temp\temp_1734484403825.xlsx
-18-12-2024 06:13:23 [info]: trying to save
-18-12-2024 06:13:24 [info]: Сохранение файла по пути:
-18-12-2024 06:13:24 [info]: Удаление временного файла.
-18-12-2024 06:13:24 [info]: Файл успешно обработан и сохранён в C:\Users\Seeubleed\Desktop\table_18 12 2024  06 13 23.xlsx
-18-12-2024 06:13:25 [info]: Приложение завершено
-18-12-2024 06:19:32 [info]: Главное окно загружено
-18-12-2024 06:19:33 [info]: Выбор файла
-18-12-2024 06:19:36 [info]: Выбранный файл: C:\Users\Seeubleed\Desktop\repsys_validation_1275_2024_12_17.xlsx
-18-12-2024 06:19:36 [info]: Колонки 12, 11, 8, 7, 6, 5 успешно удалены.
-18-12-2024 06:19:36 [info]: trying to save a temp file
-18-12-2024 06:19:37 [info]: temp file saved: C:\Users\SEEUBL~1\AppData\Local\Temp\temp_1734484776917.xlsx
-18-12-2024 06:19:37 [info]: trying to save
-18-12-2024 06:19:38 [info]: Сохранение файла по пути:
-18-12-2024 06:19:38 [info]: Удаление временного файла.
-18-12-2024 06:19:38 [info]: Файл успешно обработан и сохранён в C:\Users\Seeubleed\Desktop\table_18 12 2024  06 19 37.xlsx
-18-12-2024 06:19:39 [info]: Приложение завершено
-18-12-2024 06:20:26 [info]: Главное окно загружено
-18-12-2024 06:20:27 [info]: Выбор файла
-18-12-2024 06:20:28 [info]: Выбранный файл: C:\Users\Seeubleed\Desktop\repsys_validation_1275_2024_12_17.xlsx
-18-12-2024 06:20:29 [info]: Колонки 12, 11, 8, 7, 6, 5 успешно удалены.
-18-12-2024 06:20:29 [info]: trying to save a temp file
-18-12-2024 06:20:29 [info]: temp file saved: C:\Users\SEEUBL~1\AppData\Local\Temp\temp_1734484829162.xlsx
-18-12-2024 06:20:29 [info]: trying to save
-18-12-2024 06:20:30 [info]: Сохранение файла по пути:
-18-12-2024 06:20:30 [info]: Удаление временного файла.
-18-12-2024 06:20:30 [info]: Файл успешно обработан и сохранён в C:\Users\Seeubleed\Desktop\table_18 12 2024  06 20 29.xlsx
-18-12-2024 06:20:31 [info]: Приложение завершено
-18-12-2024 06:25:40 [info]: Главное окно загружено
-18-12-2024 06:25:41 [info]: Выбор файла
-18-12-2024 06:25:43 [info]: Выбранный файл: C:\Users\Seeubleed\Desktop\repsys_validation_1275_2024_12_17.xlsx
-18-12-2024 06:25:44 [info]: Колонки 12, 11, 8, 7, 6, 5 успешно удалены.
-18-12-2024 06:25:44 [info]: trying to save a temp file
-18-12-2024 06:25:44 [info]: temp file saved: C:\Users\SEEUBL~1\AppData\Local\Temp\temp_1734485144162.xlsx
-18-12-2024 06:25:44 [info]: trying to save
-18-12-2024 06:25:45 [info]: Сохранение файла по пути:
-18-12-2024 06:25:45 [info]: Удаление временного файла.
-18-12-2024 06:25:45 [info]: Файл успешно обработан и сохранён в C:\Users\Seeubleed\Desktop\table_18 12 2024  06 25 44.xlsx
-18-12-2024 06:25:46 [info]: Приложение завершено
-18-12-2024 07:14:54 [info]: Главное окно загружено
-18-12-2024 07:14:55 [info]: Выбор файла
-18-12-2024 07:14:57 [info]: Выбранный файл: C:\Users\Seeubleed\Desktop\repsys_validation_1275_2024_12_17.xlsx
-18-12-2024 07:14:57 [info]: Колонки 12, 11, 8, 7, 6, 5 успешно удалены.
-18-12-2024 07:14:57 [info]: trying to save a temp file
-18-12-2024 07:14:57 [info]: temp file saved: C:\Users\SEEUBL~1\AppData\Local\Temp\temp_1734488097630.xlsx
-18-12-2024 07:14:57 [info]: trying to save
-18-12-2024 07:14:58 [info]: Сохранение файла по пути:
-18-12-2024 07:14:58 [info]: Удаление временного файла.
-18-12-2024 07:14:58 [info]: Файл успешно обработан и сохранён в C:\Users\Seeubleed\Desktop\table_18 12 2024  07 14 57.xlsx
-18-12-2024 07:52:24 [info]: Приложение завершено
-18-12-2024 20:38:03 [info]: Главное окно загружено
-18-12-2024 20:38:04 [info]: Выбор файла
-18-12-2024 20:38:07 [info]: Выбранный файл: C:\Users\Seeubleed\Desktop\1.xlsx
-18-12-2024 20:38:08 [info]: Колонки 12, 11, 8, 7, 6, 5 успешно удалены.
-18-12-2024 20:38:08 [info]: trying to save a temp file
-18-12-2024 20:38:08 [info]: temp file saved: C:\Users\SEEUBL~1\AppData\Local\Temp\temp_1734536288429.xlsx
-18-12-2024 20:38:08 [info]: trying to save
-18-12-2024 20:38:10 [info]: Файл успешно обработан и сохранён в C:\Users\Seeubleed\Desktop\table_18 12 2024  20 38 08.xlsx
-18-12-2024 20:41:55 [info]: Приложение завершено
-19-12-2024 01:11:18 [info]: Главное окно загружено
-19-12-2024 01:11:20 [info]: Выбор файла
-19-12-2024 01:11:28 [info]: Выбранный файл: C:\Users\Seeubleed\Desktop\repsys_validation_1275_2024_12_18.xlsx
-19-12-2024 01:11:28 [info]: Колонки 12, 11, 8, 7, 6, 5 успешно удалены.
-19-12-2024 01:11:28 [info]: trying to save a temp file
-19-12-2024 01:11:29 [info]: temp file saved: C:\Users\SEEUBL~1\AppData\Local\Temp\temp_1734552688985.xlsx
-19-12-2024 01:11:29 [info]: trying to save
-19-12-2024 01:11:30 [info]: Файл успешно обработан и сохранён в C:\Users\Seeubleed\Desktop\table_19 12 2024  01 11 29.xlsx
-19-12-2024 01:11:32 [info]: Приложение завершено
-28-12-2024 00:06:44 [info]: Главное окно загружено
-28-12-2024 00:06:58 [info]: Выбор файла
-28-12-2024 00:07:01 [info]: Выбранный файл: C:\Users\Seeubleed\Desktop\repsys_validation_1275_2024_12_27.xlsx
-28-12-2024 00:07:01 [info]: Колонки 12, 11, 8, 7, 6, 5 успешно удалены.
-28-12-2024 00:07:01 [info]: trying to save a temp file
-28-12-2024 00:07:01 [info]: temp file saved: C:\Users\SEEUBL~1\AppData\Local\Temp\temp_1735326421640.xlsx
-28-12-2024 00:07:01 [info]: trying to save
-28-12-2024 00:07:03 [info]: Файл успешно обработан и сохранён в C:\Users\Seeubleed\Desktop\table_28 12 2024  00 07 01.xlsx
-28-12-2024 00:08:48 [info]: Выбор файла
-28-12-2024 00:08:51 [info]: Выбранный файл: C:\Users\Seeubleed\Desktop\repsys_validation_1275_2024_12_27 (1).xlsx
-28-12-2024 00:08:51 [info]: Колонки 12, 11, 8, 7, 6, 5 успешно удалены.
-28-12-2024 00:08:51 [info]: trying to save a temp file
-28-12-2024 00:08:51 [info]: temp file saved: C:\Users\SEEUBL~1\AppData\Local\Temp\temp_1735326531791.xlsx
-28-12-2024 00:08:51 [info]: trying to save
-28-12-2024 00:08:58 [info]: Файл успешно обработан и сохранён в C:\Users\Seeubleed\Desktop\table_28 12 2024  00 08 51.xlsx
-28-12-2024 00:15:24 [info]: Выбор файла
-28-12-2024 00:15:25 [info]: Выбранный файл: C:\Users\Seeubleed\Desktop\repsys_validation_1275_2024_12_27.xlsx
-28-12-2024 00:15:26 [info]: Колонки 12, 11, 8, 7, 6, 5 успешно удалены.
-28-12-2024 00:15:26 [info]: trying to save a temp file
-28-12-2024 00:15:26 [info]: temp file saved: C:\Users\SEEUBL~1\AppData\Local\Temp\temp_1735326926041.xlsx
-28-12-2024 00:15:26 [info]: trying to save
-28-12-2024 00:15:27 [info]: Файл успешно обработан и сохранён в C:\Users\Seeubleed\Desktop\table_28 12 2024  00 15 26.xlsx
-28-12-2024 00:15:28 [info]: Приложение завершено
-28-12-2024 00:16:52 [info]: Главное окно загружено
-28-12-2024 00:16:55 [info]: Выбор файла
-28-12-2024 00:16:56 [info]: Выбранный файл: C:\Users\Seeubleed\Desktop\repsys_validation_1275_2024_12_27 (1).xlsx
-28-12-2024 00:16:57 [info]: Колонки 12, 11, 8, 7, 6, 5 успешно удалены.
-28-12-2024 00:16:57 [info]: trying to save a temp file
-28-12-2024 00:16:57 [info]: temp file saved: C:\Users\SEEUBL~1\AppData\Local\Temp\temp_1735327017034.xlsx
-28-12-2024 00:16:57 [info]: trying to save
-28-12-2024 00:16:58 [info]: Файл успешно обработан и сохранён в C:\Users\Seeubleed\Desktop\table_28 12 2024  00 16 57.xlsx
-28-12-2024 00:18:45 [info]: Выбор файла
-28-12-2024 00:18:46 [info]: Выбранный файл: C:\Users\Seeubleed\Desktop\repsys_validation_1275_2024_12_27.xlsx
-28-12-2024 00:18:46 [info]: Колонки 12, 11, 8, 7, 6, 5 успешно удалены.
-28-12-2024 00:18:46 [info]: trying to save a temp file
-28-12-2024 00:18:46 [info]: temp file saved: C:\Users\SEEUBL~1\AppData\Local\Temp\temp_1735327126698.xlsx
-28-12-2024 00:18:46 [info]: trying to save
-28-12-2024 00:18:48 [info]: Файл успешно обработан и сохранён в C:\Users\Seeubleed\Desktop\table_28 12 2024  00 18 46.xlsx
-28-12-2024 00:18:49 [info]: Выбор файла
-28-12-2024 00:18:50 [info]: Файл не был выбран
-28-12-2024 00:18:52 [info]: Приложение завершено
-08-01-2025 20:45:52 [info]: Главное окно загружено
-08-01-2025 20:45:55 [info]: Выбор файла
-08-01-2025 20:45:57 [info]: Файл не был выбран
-08-01-2025 20:45:58 [info]: Приложение завершено
-09-01-2025 03:23:51 [info]: Главное окно загружено
-09-01-2025 03:24:02 [info]: Приложение завершено
-09-01-2025 03:58:14 [info]: Главное окно загружено
-09-01-2025 03:58:17 [info]: Приложение завершено
-09-01-2025 22:12:23 [info]: Главное окно загружено
-09-01-2025 22:12:26 [info]: Приложение завершено
-10-01-2025 23:43:34 [info]: Главное окно загружено
-10-01-2025 23:43:35 [info]: Выбор файла
-10-01-2025 23:43:37 [info]: Выбранный файл: C:\Users\Seeubleed\Desktop\repsys_validation_1275_2025_01_10.xlsx
-10-01-2025 23:43:37 [info]: Колонки 12, 11, 8, 7, 6, 5 успешно удалены.
-10-01-2025 23:43:37 [info]: trying to save a temp file
-10-01-2025 23:43:38 [info]: temp file saved: C:\Users\SEEUBL~1\AppData\Local\Temp\temp_1736534617930.xlsx
-10-01-2025 23:43:38 [info]: trying to save
-10-01-2025 23:43:41 [info]: Сохранение было отменено пользователем.
-10-01-2025 23:43:42 [info]: Приложение завершено
-10-01-2025 23:43:49 [info]: Главное окно загружено
-10-01-2025 23:43:51 [info]: Выбор файла
-10-01-2025 23:43:52 [info]: Выбранный файл: C:\Users\Seeubleed\Desktop\repsys_validation_1275_2025_01_10.xlsx
-10-01-2025 23:43:52 [info]: Колонки 12, 11, 8, 7, 6, 5 успешно удалены.
-10-01-2025 23:43:52 [info]: trying to save a temp file
-10-01-2025 23:43:52 [info]: temp file saved: C:\Users\SEEUBL~1\AppData\Local\Temp\temp_1736534632850.xlsx
-10-01-2025 23:43:52 [info]: trying to save
-10-01-2025 23:43:57 [info]: Сохранение было отменено пользователем.
-10-01-2025 23:44:01 [info]: Выбор файла
-10-01-2025 23:44:03 [info]: Выбранный файл: C:\Users\Seeubleed\Desktop\repsys_validation_1275_2025_01_10.xlsx
-10-01-2025 23:44:03 [info]: no columns found: "validator_Причина"
-10-01-2025 23:44:03 [info]: skipping
-10-01-2025 23:44:03 [info]: no columns found: "validator_Причина по стоимости"
-10-01-2025 23:44:03 [info]: skipping
-10-01-2025 23:44:03 [info]: no columns found: "reason_by_validator"
-10-01-2025 23:44:03 [info]: skipping
-10-01-2025 23:44:03 [info]: Колонки 12, 11, 8, 7, 6, 5 успешно удалены.
-10-01-2025 23:44:03 [info]: trying to save a temp file
-10-01-2025 23:44:03 [info]: temp file saved: C:\Users\SEEUBL~1\AppData\Local\Temp\temp_1736534643322.xlsx
-10-01-2025 23:44:03 [info]: trying to save
-10-01-2025 23:44:10 [info]: Сохранение было отменено пользователем.
-10-01-2025 23:44:14 [info]: Приложение завершено
-10-01-2025 23:59:53 [info]: Главное окно загружено
-10-01-2025 23:59:56 [info]: Приложение завершено
-11-01-2025 00:00:06 [info]: Главное окно загружено
-11-01-2025 00:00:08 [info]: Приложение завершено
-11-01-2025 00:00:16 [info]: Главное окно загружено
-11-01-2025 00:00:21 [info]: Приложение завершено
+11-01-2025 12:28:06 [info]: Главное окно загружено
+11-01-2025 12:28:15 [info]: Выбор файла
+11-01-2025 12:28:19 [info]: Выбранный файл: C:\Users\Seeubleed\Desktop\repsys_validation_1275_2025_01_10.xlsx
+11-01-2025 12:28:19 [info]: no columns found: "validator_Причина"
+11-01-2025 12:28:19 [info]: skipping
+11-01-2025 12:28:19 [info]: no columns found: "validator_Причина по стоимости"
+11-01-2025 12:28:19 [info]: skipping
+11-01-2025 12:28:19 [info]: no columns found: "reason_by_validator"
+11-01-2025 12:28:19 [info]: skipping
+11-01-2025 12:28:21 [info]: Приложение завершено
+11-01-2025 12:28:30 [info]: Главное окно загружено
+11-01-2025 12:28:30 [info]: Выбор файла
+11-01-2025 12:28:32 [info]: Выбранный файл: C:\Users\Seeubleed\Desktop\repsys_validation_1275_2025_01_10.xlsx
+11-01-2025 12:28:32 [info]: no columns found: "validator_Причина"
+11-01-2025 12:28:32 [info]: skipping
+11-01-2025 12:28:32 [info]: no columns found: "validator_Причина по стоимости"
+11-01-2025 12:28:32 [info]: skipping
+11-01-2025 12:28:32 [info]: no columns found: "reason_by_validator"
+11-01-2025 12:28:32 [info]: skipping
+11-01-2025 12:28:33 [info]: Колонки 12, 11, 8, 7, 6, 5 успешно удалены.
+11-01-2025 12:28:33 [info]: trying to save a temp file
+11-01-2025 12:28:33 [info]: temp file saved: C:\Users\SEEUBL~1\AppData\Local\Temp\temp_1736580513152.xlsx
+11-01-2025 12:28:33 [info]: trying to save
+11-01-2025 12:28:34 [info]: Файл успешно обработан и сохранён в C:\Users\Seeubleed\Desktop\table_11 01 2025  12 28 33.xlsx
+11-01-2025 12:28:47 [info]: Приложение завершено
+11-01-2025 12:38:08 [info]: Главное окно загружено
+11-01-2025 12:38:09 [info]: Выбор файла
+11-01-2025 12:38:12 [info]: Выбранный файл: C:\Users\Seeubleed\Desktop\repsys_validation_1275_2025_01_10.xlsx
+11-01-2025 12:38:12 [info]: no columns found: "validator_Причина"
+11-01-2025 12:38:12 [info]: skipping
+11-01-2025 12:38:12 [info]: no columns found: "validator_Причина по стоимости"
+11-01-2025 12:38:12 [info]: skipping
+11-01-2025 12:38:12 [info]: no columns found: "reason_by_validator"
+11-01-2025 12:38:12 [info]: skipping
+11-01-2025 12:38:12 [info]: Колонки 12, 11, 8, 7, 6, 5 успешно удалены.
+11-01-2025 12:38:12 [info]: trying to save a temp file
+11-01-2025 12:38:12 [info]: temp file saved: C:\Users\SEEUBL~1\AppData\Local\Temp\temp_1736581092402.xlsx
+11-01-2025 12:38:12 [info]: trying to save
+11-01-2025 12:38:13 [info]: Файл успешно обработан и сохранён в C:\Users\Seeubleed\Desktop\table_11 01 2025  12 38 12.xlsx
+11-01-2025 12:38:15 [info]: Приложение завершено
+11-01-2025 12:38:20 [info]: Главное окно загружено
+11-01-2025 12:38:22 [info]: Выбор файла
+11-01-2025 12:38:24 [info]: Файл не был выбран
+11-01-2025 12:38:27 [info]: Выбор файла
+11-01-2025 12:38:29 [info]: Выбранный файл: C:\Users\Seeubleed\Desktop\repsys_validation_1275_2025_01_10.xlsx
+11-01-2025 12:38:29 [info]: no columns found: "validator_Причина"
+11-01-2025 12:38:29 [info]: skipping
+11-01-2025 12:38:29 [info]: no columns found: "validator_Причина по стоимости"
+11-01-2025 12:38:29 [info]: skipping
+11-01-2025 12:38:29 [info]: no columns found: "reason_by_validator"
+11-01-2025 12:38:29 [info]: skipping
+11-01-2025 12:38:29 [info]: Колонки 12, 11, 8, 7, 6, 5 успешно удалены.
+11-01-2025 12:38:29 [info]: trying to save a temp file
+11-01-2025 12:38:30 [info]: temp file saved: C:\Users\SEEUBL~1\AppData\Local\Temp\temp_1736581109872.xlsx
+11-01-2025 12:38:30 [info]: trying to save
+11-01-2025 12:38:30 [info]: Файл успешно обработан и сохранён в C:\Users\Seeubleed\Desktop\table_11 01 2025  12 38 30.xlsx
+11-01-2025 12:38:41 [info]: Приложение завершено
+11-01-2025 12:42:00 [info]: Главное окно загружено
+11-01-2025 12:42:03 [info]: Выбор файла
+11-01-2025 12:42:05 [info]: Выбранный файл: C:\Users\Seeubleed\Desktop\repsys_validation_1275_2025_01_10.xlsx
+11-01-2025 12:42:05 [info]: no columns found: "validator_Причина"
+11-01-2025 12:42:05 [info]: skipping
+11-01-2025 12:42:05 [info]: no columns found: "validator_Причина по стоимости"
+11-01-2025 12:42:05 [info]: skipping
+11-01-2025 12:42:05 [info]: no columns found: "reason_by_validator"
+11-01-2025 12:42:05 [info]: skipping
+11-01-2025 12:42:05 [info]: Колонки 12, 11, 8, 7, 6, 5 успешно удалены.
+11-01-2025 12:42:05 [info]: trying to save a temp file
+11-01-2025 12:42:05 [info]: temp file saved: C:\Users\SEEUBL~1\AppData\Local\Temp\temp_1736581325312.xlsx
+11-01-2025 12:42:05 [info]: trying to save
+11-01-2025 12:42:06 [info]: Файл успешно обработан и сохранён в C:\Users\Seeubleed\Desktop\table_11 01 2025  12 42 05.xlsx
+11-01-2025 12:46:00 [info]: Приложение завершено
