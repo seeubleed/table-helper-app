@@ -4,12 +4,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const loadingIndicator = document.getElementById('loading')
   const btn = document.getElementById('processButton')
 
-  const checkboxIds = [
-    'toggle-higlight',
-    'toggle-column-correct',
-    'toggle-column-comment',
-    'toggle-higlight-correct',
-  ]
+  const checkboxIds = ['toggle-higlight', 'toggle-column-correct', 'toggle-column-comment', 'toggle-higlight-correct', 'toggle-switch_mode_links', 'toggle-switch_mode_links_change']
 
   const savedState = await globalThis.electronAPI.loadCheckboxState()
 
@@ -63,7 +58,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         checkboxStates['toggle-column-correct'],
         checkboxStates['toggle-column-comment'],
         checkboxStates['toggle-higlight'],
-        checkboxStates['toggle-higlight-correct']
+        checkboxStates['toggle-higlight-correct'],
+        checkboxStates['toggle-switch_mode_links'],
+        checkboxStates['toggle-switch_mode_links_change']
       )
 
       loadingIndicator.style.display = 'none'

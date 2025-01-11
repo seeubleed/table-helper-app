@@ -78,7 +78,7 @@ ipcMain.on('window-close', event => {
 
 ipcMain.handle('select-file', handleSelectFile)
 
-ipcMain.handle('process-file', async (event, filePath, toggleColumnCorrect, toggleColumnComment, toggleHiglight, toggleHighlightCorrect) => {
+ipcMain.handle('process-file', async (event, filePath, toggleColumnCorrect, toggleColumnComment, toggleHiglight, toggleHighlightCorrect, toggleSwitchModeLinks, toggleSwitchModeLinksChange) => {
   if (!filePath) {
     logger.error('file path was not get')
     return
@@ -123,7 +123,7 @@ ipcMain.handle('process-file', async (event, filePath, toggleColumnCorrect, togg
 
     if (toggleHiglight) await highlightDuplicates(worksheet)
 
-    await updateLinks(worksheet)
+    await updateLinks(worksheet, toggleSwitchModeLinks, toggleSwitchModeLinksChange)
 
     updateAnswers(worksheet, validatorAnswerIndex, assessorAnswerIndex)
 

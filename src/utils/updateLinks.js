@@ -1,4 +1,4 @@
-async function updateLinks(worksheet) {
+async function updateLinks(worksheet, toggleSwitchModeLinks, toggleSwitchModeLinksChange) {
   const headerRow = worksheet.getRow(1).values.slice(1)
 
   const taskExtIdIndex = headerRow.indexOf('task_ext_id') + 1
@@ -27,8 +27,7 @@ async function updateLinks(worksheet) {
       const prefix = `https://centiman.avito.ru/service-dataset-collector-frontend/project/${projectId}/answer/ext_id/`
 
       row.getCell(taskExtIdIndex).value = {
-        text: `Изменить ответ`,
-        // text: `${prefix}${extId}`,
+        text: toggleSwitchModeLinksChange ? `Изменить ответ` : `${prefix}${extId}`,
         hyperlink: `${prefix}${extId}`,
       }
 
@@ -42,8 +41,7 @@ async function updateLinks(worksheet) {
       const prefix = `https://centiman.avito.ru/service-dataset-collector-frontend/manage_project/${projectID}/task/`
 
       row.getCell(asTaskIdIndex).value = {
-        text: `${taskId}`,
-        //   text: `${prefixTemplate}${taskId}`,
+        text: toggleSwitchModeLinks ? `${taskId}` : `${prefix}${taskId}`,
         hyperlink: `${prefix}${taskId}`,
       }
 
