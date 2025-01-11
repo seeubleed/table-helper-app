@@ -53,20 +53,39 @@ ipcMain.handle('load-checkbox-state', async () => {
 app.on('ready', () => {
   Initialize()
 
+  logger.info('Проверка обновлений...')
   autoUpdater.checkForUpdatesAndNotify()
 
-  autoUpdater.on('update-available', () => {
+  // Обработчики событий автообновлений
+  autoUpdater.on('checking-for-update', () => {
+    logger.info('Проверка наличия обновлений...')
+  })
+
+  autoUpdater.on('update-available', info => {
+    logger.info(`Доступно обновление: версия ${info.version}`)
     mainWindow.webContents.send('update_available')
-    logger.info('Обновление доступно')
+  })
+
+  autoUpdater.on('update-not-available', info => {
+    logger.info('Обновлений нет.')
+  })
+
+  autoUpdater.on('error', err => {
+    logger.error(`Ошибка автообновления: ${err}`)
+  })
+
+  autoUpdater.on('download-progress', progressObj => {
+    logger.info(`Скорость загрузки: ${progressObj.bytesPerSecond} - Загружено ${progressObj.percent.toFixed(2)}% (${progressObj.transferred}/${progressObj.total})`)
   })
 
   autoUpdater.on('update-downloaded', () => {
+    logger.info('Обновление загружено.')
     mainWindow.webContents.send('update_downloaded')
-    logger.info('Обновление скачивается')
   })
 })
 
 ipcMain.on('restart_app', () => {
+  logger.info('Перезапуск приложения для установки обновления.')
   autoUpdater.quitAndInstall()
 })
 
