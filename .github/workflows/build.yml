@@ -33,8 +33,8 @@ jobs:
           chmod +x ./node_modules/app-builder-bin/mac/app-builder_arm64
           chmod +x ./node_modules/.bin/electron-builder
 
-      # Build and publish Electron app
-      - name: Build and Publish Electron app for ${{ matrix.platform }}
+      # Build the app for the specific platform
+      - name: Build Electron app for ${{ matrix.platform }}
         run: |
           if [ "${{ matrix.platform }}" == "mac" ]; then
             npm run electron-builder -- --mac --publish always
@@ -43,6 +43,30 @@ jobs:
           fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Verify build output
+      - name: Verify build output
+        run: ls -l dist/
+
+      # Upload macOS build artifacts
+      - name: Upload macOS build artifacts
+        if: matrix.platform == 'mac'
+        uses: actions/upload-artifact@v4
+        with:
+          name: mac-build
+          path: |
+            dist/*.dmg
+            dist/latest-mac.yml
+
+      # Upload Windows build artifacts
+      - name: Upload Windows build artifacts
+        if: matrix.platform == 'win'
+        uses: actions/upload-artifact@v4
+        with:
+          name: win-build
+          path: |
+            dist/*.exe
+            dist/latest.yml
 
   release:
     needs: build
@@ -53,17 +77,27 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Ensure artifacts are in the release
-      - name: Ensure build artifacts exist
-        run: ls -l dist/
+      # Download artifacts
+      - name: Download macOS artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: mac-build
+          path: ./dist/mac
 
-      # Publish GitHub Release
-      - name: Publish GitHub Release
+      - name: Download Windows artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: win-build
+          path: ./dist/win
+
+      # Create GitHub Release
+      - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            dist/*.dmg
-            dist/*.exe
-            dist/latest*.yml
+            dist/mac/*.dmg
+            dist/mac/latest-mac.yml
+            dist/win/*.exe
+            dist/win/latest.yml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
