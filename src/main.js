@@ -1,5 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
 const { autoUpdater } = require('electron-updater')
+
 const fs = require('fs')
 const os = require('os')
 const path = require('path')
@@ -52,36 +53,6 @@ ipcMain.handle('load-checkbox-state', async () => {
 
 app.on('ready', () => {
   Initialize()
-
-  logger.info('Проверка обновлений...')
-  autoUpdater.checkForUpdatesAndNotify()
-
-  // Обработчики событий автообновлений
-  autoUpdater.on('checking-for-update', () => {
-    logger.info('Проверка наличия обновлений...')
-  })
-
-  autoUpdater.on('update-available', info => {
-    logger.info(`Доступно обновление: версия ${info.version}`)
-    getMainWindow.webContents.send('update_available')
-  })
-
-  autoUpdater.on('update-not-available', info => {
-    logger.info('Обновлений нет.')
-  })
-
-  autoUpdater.on('error', err => {
-    logger.error(`Ошибка автообновления: ${err}`)
-  })
-
-  autoUpdater.on('download-progress', progressObj => {
-    logger.info(`Скорость загрузки: ${progressObj.bytesPerSecond} - Загружено ${progressObj.percent.toFixed(2)}% (${progressObj.transferred}/${progressObj.total})`)
-  })
-
-  autoUpdater.on('update-downloaded', () => {
-    logger.info('Обновление загружено.')
-    getMainWindow.webContents.send('update_downloaded')
-  })
 })
 
 ipcMain.on('restart_app', () => {

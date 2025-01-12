@@ -13,4 +13,10 @@ contextBridge.exposeInMainWorld('electronAPI', {
   onUpdateAvailable: callback => ipcRenderer.on('update_available', callback),
   onUpdateDownloaded: callback => ipcRenderer.on('update_downloaded', callback),
   restartApp: () => ipcRenderer.send('restart_app'),
+
+  send: (channel, data) => {
+    if (channel === 'resize-window') {
+      ipcRenderer.send(channel, data)
+    }
+  },
 })

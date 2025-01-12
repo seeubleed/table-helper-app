@@ -4,17 +4,28 @@ document.addEventListener('DOMContentLoaded', async () => {
   const loadingIndicator = document.getElementById('loading')
   const btn = document.getElementById('processButton')
 
-  const notificationArea = document.getElementById('notification-area')
+  const contentHeight = document.body.scrollHeight // Высота содержимого
+  globalThis.electronAPI.send('resize-window', contentHeight)
 
   globalThis.electronAPI.onUpdateAvailable(() => {
-    notificationArea.innerHTML = '<p>Доступно обновление! Оно скоро будет загружено.</p>'
+    const notificationArea = document.getElementById('notification-area')
+    notificationArea.innerHTML = `
+      <div class="notification">
+        <p>Доступно обновление! Оно скоро будет загружено.</p>
+      </div>
+    `
+    notificationArea.classList.add('show')
   })
 
   globalThis.electronAPI.onUpdateDownloaded(() => {
+    const notificationArea = document.getElementById('notification-area')
     notificationArea.innerHTML = `
-      <p>Обновление загружено. Перезапустите приложение, чтобы применить его.</p>
-      <button id="restart-button">Перезапустить</button>
+      <div class="notification">
+        <p>Обновление загружено. Перезапустите приложение, чтобы применить его.</p>
+        <button id="restart-button">Перезапустить</button>
+      </div>
     `
+    notificationArea.classList.add('show')
 
     document.getElementById('restart-button').addEventListener('click', () => {
       globalThis.electronAPI.restartApp()
