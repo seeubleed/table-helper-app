@@ -13,42 +13,35 @@ jobs:
         platform: [mac, win]
 
     steps:
-      # Checkout repository
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '20'
 
-      # Install dependencies
       - name: Install dependencies
         run: npm install
 
-      # Fix permissions
       - name: Fix permissions for app-builder and electron-builder
         run: |
           chmod +x ./node_modules/app-builder-bin/mac/app-builder_arm64
           chmod +x ./node_modules/.bin/electron-builder
 
-      # Build the app for the specific platform
       - name: Build Electron app for ${{ matrix.platform }}
         run: |
           if [ "${{ matrix.platform }}" == "mac" ]; then
-            npm run electron-builder -- --mac --publish always
+            npm run electron-builder -- --mac --publish never
           else
-            npm run electron-builder -- --win --publish always
+            npm run electron-builder -- --win --publish never
           fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # Verify build output
       - name: Verify build output
         run: ls -l dist/
 
-      # Upload macOS build artifacts
       - name: Upload macOS build artifacts
         if: matrix.platform == 'mac'
         uses: actions/upload-artifact@v4
@@ -58,7 +51,6 @@ jobs:
             dist/*.dmg
             dist/latest-mac.yml
 
-      # Upload Windows build artifacts
       - name: Upload Windows build artifacts
         if: matrix.platform == 'win'
         uses: actions/upload-artifact@v4
@@ -73,11 +65,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout repository
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Download artifacts
       - name: Download macOS artifacts
         uses: actions/download-artifact@v4
         with:
@@ -90,7 +80,6 @@ jobs:
           name: win-build
           path: ./dist/win
 
-      # Create GitHub Release
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
