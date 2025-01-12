@@ -37,7 +37,8 @@
     "publish": {
       "provider": "github",
       "owner": "seeubleed",
-      "repo": "table-helper-app"
+      "repo": "table-helper-app",
+      "releaseType": "draft"
     },
     "win": {
       "target": [
