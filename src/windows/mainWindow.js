@@ -9,7 +9,7 @@ function Initialize() {
   try {
     mainWindow = new BrowserWindow({
       width: 800,
-      height: 300,
+      height: 550,
       frame: false,
       resizable: false,
       icon: path.join(`${__dirname}/../icons/icon.ico`),
@@ -51,16 +51,6 @@ function Initialize() {
     autoUpdater.on('update-downloaded', () => {
       logger.info('Обновление загружено.')
       mainWindow.webContents.send('update_downloaded')
-    })
-
-    ipcMain.on('resize-window', (_, height) => {
-      const [currentWidth] = mainWindow.getSize()
-      mainWindow.setBounds({
-        x: mainWindow.getBounds().x,
-        y: mainWindow.getBounds().y,
-        width: currentWidth,
-        height: Math.max(height, 300), // Установка минимальной высоты
-      })
     })
 
     mainWindow.webContents.setWindowOpenHandler(({ url }) => {

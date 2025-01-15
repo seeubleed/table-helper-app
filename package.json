@@ -1,6 +1,6 @@
 {
   "name": "table_helper_app",
-  "version": "0.5.2",
+  "version": "0.5.1",
   "description": "Обработчик xlsx файлов",
   "main": "src/main.js",
   "scripts": {
@@ -23,13 +23,21 @@
     "electron-builder": "^25.1.8"
   },
   "build": {
+    "asar": true,
     "appId": "com.seeubleed.tablehelperapp",
     "productName": "table_helper_app",
     "files": [
       "src/**/*",
       "node_modules/**/*",
       "src/html/index.html",
-      "src/styles/styles.css"
+      "src/styles/styles.css",
+      "dist/**/*"
+    ],
+    "extraFiles": [
+      {
+        "from": "options.json",
+        "to": "./options.json"
+      }
     ],
     "directories": {
       "output": "dist"

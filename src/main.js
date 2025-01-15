@@ -28,6 +28,22 @@ const updateAnswers = require('./utils/updateAnswers')
 
 const stateFilePath = path.join(process.cwd(), 'settings.json')
 
+const { loadRenameMap, renameColumns } = require('./utils/renameColumns')
+const renameMapPath = path.join(process.cwd(), 'options.json')
+// const renameMap = loadRenameMap(renameMapPath)
+
+ipcMain.handle('load-options', async () => {
+  const optionsPath = path.join(process.cwd(), 'options.json')
+  const data = fs.readFileSync(optionsPath, 'utf8')
+  return JSON.parse(data)
+})
+
+ipcMain.handle('save-options', async (_, updatedOptions) => {
+  const optionsPath = path.join(process.cwd(), 'options.json')
+  fs.writeFileSync(optionsPath, JSON.stringify(updatedOptions, null, 2), 'utf8')
+  return 'success'
+})
+
 ipcMain.handle('save-checkbox-state', async (event, state) => {
   try {
     fs.writeFileSync(stateFilePath, JSON.stringify(state, null, 2), 'utf-8')
@@ -164,6 +180,9 @@ ipcMain.handle('process-file', async (event, filePath, toggleColumnCorrect, togg
     await processWorksheet(worksheet)
 
     removeColumns(worksheet, validatorAnswerIndex, assessorAnswerIndex, projectToValIndex, valProjectdIndex, valTaskIdIndex, taskExtIdIndex)
+
+    const renameMap = loadRenameMap(renameMapPath)
+    renameColumns(worksheet, renameMap.Map)
 
     logger.info('trying to save a temp file')
     const tempDir = os.tmpdir()

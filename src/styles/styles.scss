@@ -65,11 +65,11 @@ body {
   font-size: 20px;
   cursor: pointer;
   transition: color 0.2s;
-}
 
-.control-btn:hover {
-  -webkit-app-region: no-drag;
-  color: #0073e6;
+  &:hover {
+    -webkit-app-region: no-drag;
+    color: #0073e6;
+  }
 }
 
 /* Controls */
@@ -143,9 +143,9 @@ main {
 .output-box {
   margin-top: 20px;
   padding: 15px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  background-color: #f9f9f9;
+  //   border: 1px solid #ddd;
+  border-radius: 5px;
 
   .output {
     font-size: 14px;
@@ -159,7 +159,7 @@ main {
   margin: 20px 0;
   padding: 15px;
   background-color: #f9f9f9;
-  border: 1px solid #ddd;
+  //   border: 1px solid #ddd;
   border-radius: 4px;
 
   h2 {
@@ -285,4 +285,93 @@ main {
       }
     }
   }
+}
+
+.tab-container {
+  display: flex;
+  flex-direction: column; /* Вкладки сверху, содержимое снизу */
+  width: 100%;
+  //   height: 100%;
+
+  .tabs {
+    display: flex;
+    align-items: center; /* Выравнивание по вертикали */
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    // border-bottom: 1px solid #ddd;
+    padding: 10px;
+
+    .tab-btn {
+      padding: 8px 16px;
+      background-color: #f0f0f0;
+      border: none;
+      font-size: 14px;
+      cursor: pointer;
+      //   transition: background-color 0.3s, border-bottom 0.3s;
+      margin-right: 10px;
+
+      &.active {
+        background-color: #0073e6;
+        color: white;
+        // border-bottom: 3px solid #005bb5;
+      }
+
+      &:hover {
+        background-color: #e0e0e0;
+      }
+    }
+  }
+
+  .tab-content {
+    flex: 1; /* Занимает оставшуюся часть окна */
+
+    .tab-section {
+      display: none;
+
+      &.active {
+        display: block;
+      }
+    }
+  }
+}
+
+#settingsContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Три колонки одинаковой ширины */
+  gap: 10px; /* Отступы между элементами */
+  padding: 10px;
+  //   border: 1px solid #ccc;
+  border-radius: 4px;
+  max-height: 280px; /* Ограничение высоты */
+  overflow-y: auto; /* Прокрутка для большого количества элементов */
+  background-color: #f9f9f9; /* Легкий фон для выделения */
+}
+
+#settingsContainer label {
+  display: flex;
+  flex-direction: column; /* Название и поле ввода располагаются вертикально */
+  font-size: 14px; /* Компактный шрифт */
+}
+
+#settingsContainer input[type='text'] {
+  margin-top: 5px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+#saveButton {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #0078d4;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%; /* Кнопка занимает всю ширину */
+}
+
+#saveButton:hover {
+  background-color: #005ea6;
 }

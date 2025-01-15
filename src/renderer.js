@@ -4,8 +4,54 @@ document.addEventListener('DOMContentLoaded', async () => {
   const loadingIndicator = document.getElementById('loading')
   const btn = document.getElementById('processButton')
 
-  const contentHeight = document.body.scrollHeight // Высота содержимого
-  globalThis.electronAPI.send('resize-window', contentHeight)
+  const tabs = document.querySelectorAll('.tab-btn')
+  const sections = document.querySelectorAll('.tab-section')
+
+  const settingsContainer = document.getElementById('settingsContainer')
+  const saveButton = document.getElementById('saveButton')
+
+  // Загрузка текущих настроек
+  const options = await globalThis.electronAPI.loadOptions()
+  const map = options.Map
+
+  // Создание формы
+  Object.keys(map).forEach(key => {
+    const div = document.createElement('div')
+    div.innerHTML = `
+        <label>
+          ${key}:
+          <input type="text" name="${key}" value="${map[key]}" />
+        </label>
+      `
+    settingsContainer.appendChild(div)
+  })
+
+  saveButton.addEventListener('click', async () => {
+    const formData = new FormData(document.getElementById('settingsForm'))
+    const updatedMap = {}
+
+    for (const [key, value] of formData.entries()) {
+      updatedMap[key] = value
+    }
+
+    options.Map = updatedMap
+    await globalThis.electronAPI.saveOptions(options)
+
+    alert('Настройки сохранены!')
+  })
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      // Удаляем активный класс у всех вкладок и секций
+      tabs.forEach(t => t.classList.remove('active'))
+      sections.forEach(section => section.classList.remove('active'))
+
+      // Добавляем активный класс к выбранной вкладке и секции
+      tab.classList.add('active')
+      const targetId = tab.getAttribute('data-tab')
+      document.getElementById(targetId).classList.add('active')
+    })
+  })
 
   globalThis.electronAPI.onUpdateAvailable(() => {
     const notificationArea = document.getElementById('notification-area')

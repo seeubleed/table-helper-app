@@ -17,18 +17,99 @@
         </div>
       </header>
 
-      
-
       <main>
-        <div class="controls">
-          <button id="processButton" class="btn">Обработать файл</button>
-          <div id="loading" class="loading" style="display: none">
-            <div class="spinner"></div>
-            <p>Обработка файла...</p>
+        <div class="tab-container">
+          <!-- Вкладки -->
+          <div class="tabs">
+            <button class="tab-btn active" data-tab="tab-1">Обработка</button>
+            <button class="tab-btn" data-tab="tab-2">Настройки</button>
+            <button class="tab-btn" data-tab="tab-3">Заголовки</button>
+            <button class="tab-btn" data-tab="tab-4">Цвета</button>
+          </div>
+          <!-- Секции -->
+          <div class="tab-content">
+            <div id="tab-1" class="tab-section active">
+              <div class="controls">
+                <button id="processButton" class="btn">Обработать файл</button>
+
+                <div id="loading" class="loading" style="display: none">
+                  <div class="spinner"></div>
+                  <p>Обработка файла...</p>
+                </div>
+
+                <div class="output-box">
+                  <p id="output" class="output">Результат обработки будет здесь...</p>
+                </div>
+              </div>
+            </div>
+
+            <div id="tab-2" class="tab-section">
+              <div class="options">
+                <h2>Настройки обработки</h2>
+
+                <div class="option-group">
+                  <label>
+                    <input type="checkbox" id="toggle-switch_mode_links" />
+                    ID с гиперссылкой "as_task_id"
+                  </label>
+                </div>
+
+                <div class="option-group">
+                  <label>
+                    <input type="checkbox" id="toggle-switch_mode_links_change" />
+                    "Изменить" с гиперссылкой, вместо ссылки в "task_ext_id"
+                  </label>
+                </div>
+
+                <div class="option-group">
+                  <label>
+                    <input type="checkbox" id="toggle-higlight" />
+                    Подсветка дублирующих строк
+                  </label>
+                </div>
+
+                <div class="option-group">
+                  <label>
+                    <input type="checkbox" id="toggle-higlight-correct" />
+                    Подсветка "Нет, Спорно"
+                  </label>
+                </div>
+
+                <div class="option-group">
+                  <label>
+                    <input type="checkbox" id="toggle-column-correct" />
+                    Перемещение "Correct/Mistake" в конец
+                  </label>
+                </div>
+
+                <div class="option-group">
+                  <label> <input type="checkbox" id="toggle-column-comment" /> Перемещение комментариев в конец </label>
+                </div>
+              </div>
+            </div>
+
+            <div id="tab-3" class="tab-section">
+              <div class="options">
+                <h2>Настройки заголовков</h2>
+                <div class="option-group">
+                  <label>
+                    <!-- <input type="checkbox" id="toggle-switch_mode_links" />
+                      ID с гиперссылкой "as_task_id" -->
+                    <form id="settingsForm">
+                      <div id="settingsContainer"></div>
+                      <button type="button" id="saveButton">Сохранить</button>
+                    </form>
+                  </label>
+                </div>
+                <!-- Другие опции -->
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="options">
+        <!-- <div class="controls"> -->
+
+        <!-- <div class="options">
           <h2>Настройки обработки</h2>
 
           <div class="option-group">
@@ -70,11 +151,7 @@
             <label>
               <input type="checkbox" id="toggle-column-comment" /> Перемещение комментариев в конец
             </label>
-          </div>
-
-        <div class="output-box">
-          <p id="output" class="output">Результат обработки будет здесь...</p>
-        </div>
+          </div> -->
       </main>
 
       <footer class="footer">
@@ -86,7 +163,6 @@
       </footer>
 
       <div id="notification-area"></div>
-      
     </div>
     <script src="../renderer.js"></script>
   </body>
