@@ -101,60 +101,37 @@ ipcMain.on('window-close', event => {
 
 ipcMain.handle('select-file', handleSelectFile)
 
-ipcMain.handle('process-file', async (event, filePath, toggleColumnCorrect, toggleColumnComment, toggleHiglight, toggleHighlightCorrect, toggleSwitchModeLinks, toggleSwitchModeLinksChange) => {
-  if (!filePath) {
-    logger.error('file path was not get')
-    return
-  }
+ipcMain.handle('process-file', async (event, filePath, options) => {
   try {
     const workbook = new ExcelJS.Workbook()
     await workbook.xlsx.readFile(filePath)
-
     const worksheet = workbook.worksheets[0]
     worksheet.name = 'data'
-
-    if (!worksheet) {
-      throw new Error('sheet not found')
-    }
-
-    const data = []
-    worksheet.eachRow((row, rowNumber) => {
-      data.push(row.values)
-    })
 
     const headerRow = worksheet.getRow(1).values.slice(1)
 
     const projectToValIndex = headerRow.indexOf('project_to_val') + 1
     const validatorAnswerIndex = headerRow.indexOf('validator_answer') + 1
     const assessorAnswerIndex = headerRow.indexOf('assessor_answer') + 1
-
     const asCreatedIndex = headerRow.indexOf('as_created') + 1
     const valCreatedIndex = headerRow.indexOf('val_created') + 1
-
     const valProjectdIndex = headerRow.indexOf('val_project') + 1
     const valTaskIdIndex = headerRow.indexOf('val_task_id') + 1
     const taskExtIdIndex = headerRow.indexOf('task_ext_id1') + 1
 
-    if (validatorAnswerIndex === -1 || assessorAnswerIndex === -1 || asCreatedIndex === -1 || valCreatedIndex === -1) {
-      logger.error(`no found columns: "as_task_id, project_to_val" & "validator_answer & "assessor_answer"`)
-      return {
-        error: `no found columns: "as_task_id, project_to_val" & "validator_answer" & "assessor_answer"`,
-      }
-    }
-
     await sortByDate(worksheet, asCreatedIndex)
 
-    if (toggleHiglight) await highlightDuplicates(worksheet)
+    if (options.highlight) await highlightDuplicates(worksheet)
 
-    await updateLinks(worksheet, toggleSwitchModeLinks, toggleSwitchModeLinksChange)
+    await updateLinks(worksheet, options.switchModeLinks, options.switchModeLinksChange)
 
     updateAnswers(worksheet, validatorAnswerIndex, assessorAnswerIndex)
 
-    if (toggleColumnCorrect) {
+    if (options.toggleColumnCorrect) {
       await moveColumnsToEnd(worksheet, ['correct'])
     }
 
-    if (toggleColumnComment) {
+    if (options.toggleColumnComment) {
       await moveColumnsToEnd(worksheet, ['comment_by_validator'])
       await moveColumnsToEnd(worksheet, ['validator_Причина'])
       await moveColumnsToEnd(worksheet, ['validator_Причина по стоимости'])
@@ -164,7 +141,7 @@ ipcMain.handle('process-file', async (event, filePath, toggleColumnCorrect, togg
       await moveColumnsToEnd(worksheet, ['reason_by_validator_discr'])
     }
 
-    if (toggleHighlightCorrect) await highlightCorrectColumn(worksheet)
+    if (options.highlightCorrect) await highlightCorrectColumn(worksheet)
 
     setStaticColWidth(worksheet, 20)
 
@@ -185,8 +162,7 @@ ipcMain.handle('process-file', async (event, filePath, toggleColumnCorrect, togg
     renameColumns(worksheet, renameMap.Map)
 
     logger.info('trying to save a temp file')
-    const tempDir = os.tmpdir()
-    const tempFilePath = path.join(tempDir, `temp_${Date.now()}.xlsx`)
+    const tempFilePath = path.join(os.tmpdir(), `temp_${Date.now()}.xlsx`)
     await workbook.xlsx.writeFile(tempFilePath)
     logger.info(`temp file saved: ${tempFilePath}`)
 

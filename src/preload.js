@@ -3,8 +3,7 @@ const { contextBridge, ipcRenderer } = require('electron')
 contextBridge.exposeInMainWorld('electronAPI', {
   selectFile: () => ipcRenderer.invoke('select-file'),
 
-  processFile: (filePath, toggleColumnCorrect, toggleColumnComment, toggleHiglight, toggleHighlightCorrect, toggleSwitchModeLinks, toggleSwitchModeLinksChange) =>
-    ipcRenderer.invoke('process-file', filePath, toggleColumnCorrect, toggleColumnComment, toggleHiglight, toggleHighlightCorrect, toggleSwitchModeLinks, toggleSwitchModeLinksChange),
+  processFile: (filePath, options) => ipcRenderer.invoke('process-file', filePath, options),
 
   saveFile: tempFilePath => ipcRenderer.invoke('save-file', tempFilePath),
 

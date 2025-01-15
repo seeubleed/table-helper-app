@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const minimizeButton = document.getElementById('minimize')
   const closeButton = document.getElementById('close')
   const loadingIndicator = document.getElementById('loading')
-  const btn = document.getElementById('processButton')
+  const processButton = document.getElementById('processButton')
 
   const tabs = document.querySelectorAll('.tab-btn')
   const sections = document.querySelectorAll('.tab-section')
@@ -114,53 +114,62 @@ document.addEventListener('DOMContentLoaded', async () => {
     globalThis.electronAPI.closeWindow()
   })
 
-  btn.addEventListener('click', async () => {
+  processButton.addEventListener('click', async () => {
     try {
       const checkboxStates = getCheckboxStates()
 
-      const result = await globalThis.electronAPI.selectFile()
+      const options = {
+        toggleColumnCorrect: checkboxStates['toggle-column-correct'],
+        toggleColumnComment: checkboxStates['toggle-column-comment'],
+        highlight: checkboxStates['toggle-higlight'],
+        highlightCorrect: checkboxStates['toggle-higlight-correct'],
+        switchModeLinks: checkboxStates['toggle-switch_mode_links'],
+        switchModeLinksChange: checkboxStates['toggle-switch_mode_links_change'],
+      }
 
-      if (result.error) {
-        updateOutput(`Ошибка: ${result.error}`)
+      const selectF = await globalThis.electronAPI.selectFile()
+      if (selectF.error) {
+        updateLog(`Ошибка: ${selectF.error}`)
+        return
+      }
+      const filePath = selectF.filePath
+      if (!filePath) {
+        updateLog(`filePath отсутствует`)
         return
       }
 
+      // show loading bar
       loadingIndicator.style.display = 'flex'
 
-      const processResult = await globalThis.electronAPI.processFile(
-        result.filePath,
-        checkboxStates['toggle-column-correct'],
-        checkboxStates['toggle-column-comment'],
-        checkboxStates['toggle-higlight'],
-        checkboxStates['toggle-higlight-correct'],
-        checkboxStates['toggle-switch_mode_links'],
-        checkboxStates['toggle-switch_mode_links_change']
-      )
+      // core process
+      const processResult = await globalThis.electronAPI.processFile(filePath, options)
 
+      // hide loading bar
       loadingIndicator.style.display = 'none'
 
       if (processResult.error) {
-        updateOutput(`Ошибка: ${processResult.error}`)
+        updateLog(`Ошибка: ${processResult.error}`)
         return
       } else {
-        updateOutput(`Файл успешно обработан`)
+        updateLog(`Файл успешно обработан`)
       }
 
       const resultSave = await globalThis.electronAPI.saveFile(processResult.tempFilePath)
 
       if (resultSave.error) {
-        updateOutput(`Ошибка: ${resultSave.error}`)
+        updateLog(`Ошибка: ${resultSave.error}`)
         return
       } else {
-        updateOutput(resultSave.message)
+        updateLog(resultSave.message)
       }
     } catch (error) {
+      //hide loading bar
       loadingIndicator.style.display = 'none'
-      updateOutput(`Ошибка: ${error.message}`)
+      updateLog(`Ошибка: ${error.message}`)
     }
   })
 
-  function updateOutput(message) {
+  function updateLog(message) {
     const outputElement = document.getElementById('output')
     outputElement.textContent = message
 

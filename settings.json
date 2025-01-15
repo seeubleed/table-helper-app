@@ -1,8 +1,8 @@
 {
-  "toggle-higlight": true,
+  "toggle-higlight": false,
   "toggle-column-correct": false,
   "toggle-column-comment": false,
-  "toggle-higlight-correct": true,
-  "toggle-switch_mode_links": true,
-  "toggle-switch_mode_links_change": true
+  "toggle-higlight-correct": false,
+  "toggle-switch_mode_links": false,
+  "toggle-switch_mode_links_change": false
 }
