@@ -1,5 +1,9 @@
-async function updateAnswers(worksheet, validatorAnswerIndex, assessorAnswerIndex) {
+async function updateAnswers(worksheet) {
   const headerRow = worksheet.getRow(1) // Заголовок таблицы
+
+  const headerRowF = worksheet.getRow(1).values.slice(1)
+  const validatorAnswerIndex = headerRowF.indexOf('validator_answer') + 1
+  const assessorAnswerIndex = headerRowF.indexOf('assessor_answer') + 1
 
   const existingHeaders = headerRow.values.slice(1).filter(header => header !== undefined)
 

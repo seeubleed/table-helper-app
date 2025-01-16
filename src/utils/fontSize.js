@@ -21,4 +21,32 @@ async function setHeaderHeight(worksheet, height) {
   headerRow.commit()
 }
 
-module.exports = { setFontSize, setHeaderHeight }
+function setAlignment(worksheet) {
+  if (!worksheet) throw new Error('Лист не определён.')
+
+  // Выравнивание заголовков (первая строка) по центру
+  const headerRow = worksheet.getRow(1)
+  headerRow.eachCell(cell => {
+    cell.alignment = {
+      horizontal: 'center',
+      vertical: 'middle',
+      wrapText: true, // Если текст длинный, включаем перенос
+    }
+  })
+
+  // Настройка для содержимого
+  worksheet.eachRow((row, rowNumber) => {
+    if (rowNumber > 1) {
+      // Пропускаем заголовок
+      row.eachCell((cell, colNumber) => {
+        // Для остальных колонок: содержимое по центру
+        cell.alignment = {
+          horizontal: 'center',
+          vertical: 'middle',
+        }
+      })
+    }
+  })
+}
+
+module.exports = { setFontSize, setHeaderHeight, setAlignment }

@@ -2,7 +2,7 @@ const { dialog } = require('electron')
 const fs = require('fs')
 const logger = require('../logger')
 
-async function handleSaveFile(event, tempFilePath) {
+async function handleSaveFile(tempFilePath) {
   const now = new Date()
   const timeString = now.toLocaleString('ru-RU', { hour12: false }).replace(/[^0-9]/g, ' ')
   try {

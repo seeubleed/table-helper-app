@@ -3,11 +3,9 @@ const { autoUpdater } = require('electron-updater')
 const path = require('path')
 const logger = require('../logger')
 
-let mainWindow
-
-function Initialize() {
+function initialize() {
   try {
-    mainWindow = new BrowserWindow({
+    const mainWindow = new BrowserWindow({
       width: 800,
       height: 550,
       frame: false,
@@ -65,8 +63,4 @@ function Initialize() {
   }
 }
 
-function getMainWindow() {
-  return mainWindow
-}
-
-module.exports = { Initialize, getMainWindow }
+module.exports = initialize

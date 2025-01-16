@@ -1,6 +1,9 @@
-async function sortByDate(worksheet, value) {
+async function sortByDate(worksheet) {
+  const headerRow = worksheet.getRow(1).values.slice(1)
+  const asCreatedIndex = headerRow.indexOf('as_created') + 1
+
   if (!worksheet) throw new Error('sheet is not defined')
-  if (value === -1) throw new Error(`no columns found: "${value}"`)
+  if (asCreatedIndex === -1) throw new Error(`no columns found: "${asCreatedIndex}"`)
 
   // Читаем все строки, пропуская заголовок
   const rows = []
@@ -13,8 +16,8 @@ async function sortByDate(worksheet, value) {
 
   // Сортируем строки по возрастанию дат
   rows.sort((a, b) => {
-    const dateA = new Date(a[value - 1]?.replace(/\./g, '-'))
-    const dateB = new Date(b[value - 1]?.replace(/\./g, '-'))
+    const dateA = new Date(a[asCreatedIndex - 1]?.replace(/\./g, '-'))
+    const dateB = new Date(b[asCreatedIndex - 1]?.replace(/\./g, '-'))
 
     if (isNaN(dateA) && isNaN(dateB)) return 0
     if (isNaN(dateA)) return 1
