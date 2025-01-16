@@ -1,6 +1,5 @@
 const winston = require('winston')
 
-// Создаем логгер с настройками уровня и формата логирования
 const logger = winston.createLogger({
   level: 'info', // Уровень логирования (info, error, warn, debug)
   format: winston.format.combine(

@@ -43,10 +43,8 @@ async function core(filePath, options) {
   if (options.highlightCorrect) await highlightCorrectColumn(worksheet)
 
   setStaticColWidth(worksheet, 20)
-
   setFontSize(worksheet, 10, true)
   setHeaderHeight(worksheet, 30)
-
   setAlignment(worksheet)
 
   //   await setStats(worksheet)
