@@ -3,11 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self';" />
     <link rel="stylesheet" href="../styles/styles.css" />
     <title>TableHelper</title>
   </head>
   <body>
     <div class="container">
+      <!-- Header -->
       <header class="header">
         <h1>Table Helper</h1>
 
@@ -17,6 +19,7 @@
         </div>
       </header>
 
+      <!-- Main -->
       <main>
         <div class="tab-container">
           <!-- Вкладки -->
@@ -45,7 +48,7 @@
 
             <div id="tab-2" class="tab-section">
               <div class="options">
-                <h2>Настройки обработки</h2>
+                <h2>Настройка обработки</h2>
 
                 <div class="option-group">
                   <label>
@@ -77,6 +80,13 @@
 
                 <div class="option-group">
                   <label>
+                    <input type="checkbox" id="toggle-rename-titles" />
+                    Переименованные заголовки (Менять в заголовках)
+                  </label>
+                </div>
+
+                <div class="option-group">
+                  <label>
                     <input type="checkbox" id="toggle-column-correct" />
                     Перемещение "Correct/Mistake" в конец
                   </label>
@@ -90,68 +100,30 @@
 
             <div id="tab-3" class="tab-section">
               <div class="options">
-                <h2>Настройки заголовков</h2>
+                <h2>Настройка заголовков</h2>
                 <div class="option-group">
                   <label>
-                    <!-- <input type="checkbox" id="toggle-switch_mode_links" />
-                      ID с гиперссылкой "as_task_id" -->
                     <form id="settingsForm">
                       <div id="settingsContainer"></div>
                       <button type="button" id="saveButton">Сохранить</button>
                     </form>
                   </label>
                 </div>
-                <!-- Другие опции -->
+              </div>
+            </div>
+
+            <div id="tab-4" class="tab-section">
+              <div class="options">
+                <h2>Настройка заливки</h2>
+                <div class="option-group">
+                  <div id="colors"></div>
+                </div>
+
+                <button id="saveColors">Сохранить цвета</button>
               </div>
             </div>
           </div>
         </div>
-
-        <!-- <div class="controls"> -->
-
-        <!-- <div class="options">
-          <h2>Настройки обработки</h2>
-
-          <div class="option-group">
-            <label>
-              <input type="checkbox" id="toggle-switch_mode_links" />
-              ID с гиперссылкой "as_task_id"
-            </label>
-          </div>
-
-          <div class="option-group">
-            <label>
-              <input type="checkbox" id="toggle-switch_mode_links_change" />
-              "Изменить" с гиперссылкой, вместо ссылки в "task_ext_id"
-            </label>
-          </div>
-
-          <div class="option-group">
-            <label>
-              <input type="checkbox" id="toggle-higlight" />
-              Подсветка дублирующих строк
-            </label>
-          </div>
-
-          <div class="option-group">
-            <label>
-              <input type="checkbox" id="toggle-higlight-correct" />
-              Подсветка "Нет, Спорно"
-            </label>
-          </div>
-
-          <div class="option-group">
-            <label>
-              <input type="checkbox" id="toggle-column-correct" />
-              Перемещение "Correct/Mistake" в конец
-            </label>
-          </div>
-
-          <div class="option-group">
-            <label>
-              <input type="checkbox" id="toggle-column-comment" /> Перемещение комментариев в конец
-            </label>
-          </div> -->
       </main>
 
       <footer class="footer">

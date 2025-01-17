@@ -7,7 +7,8 @@ const core = require('./core')
 
 const { version } = require('../package.json')
 
-const stateFilePath = path.join(process.cwd(), 'settings.json')
+const settingsPath = path.join(process.cwd(), 'settings.json')
+const colorsPath = path.join(process.cwd(), 'colors.json')
 const optionsPath = path.join(process.cwd(), 'options.json')
 
 const registerIpcHandlers = () => {
@@ -17,9 +18,16 @@ const registerIpcHandlers = () => {
     return 'success'
   })
 
-  ipcMain.handle('load-checkbox-state', () => loadJSON(stateFilePath))
+  ipcMain.handle('load-settings', () => loadJSON(colorsPath)) // Загружаем JSON из файла
+  // Обработчик для сохранения настроек
+  ipcMain.handle('save-settings', (_, updatedSettings) => {
+    saveJSON(colorsPath, updatedSettings)
+    return 'success'
+  })
+
+  ipcMain.handle('load-checkbox-state', () => loadJSON(settingsPath))
   ipcMain.handle('save-checkbox-state', (_, state) => {
-    saveJSON(stateFilePath, state)
+    saveJSON(settingsPath, state)
     return 'success'
   })
 

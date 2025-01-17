@@ -1,3 +1,8 @@
+const fs = require('fs')
+const path = require('path')
+const settingsPath = path.join(process.cwd(), 'colors.json')
+const { loadJSON, saveJSON } = require('./jsonHandler')
+
 async function highlightDuplicates(worksheet) {
   if (!worksheet) throw new Error('Лист не определён.')
 
@@ -70,23 +75,15 @@ async function highlightDuplicates(worksheet) {
 async function highlightCorrectColumn(worksheet) {
   if (!worksheet) throw new Error('Лист не определён.')
 
+  const settings = loadJSON(settingsPath)
+  const highlightColors = settings.highlightColors || {}
+  console.log(highlightColors)
+
   const headerRow = worksheet.getRow(1)
   const correctIndex = headerRow.values.findIndex(value => value === 'correct')
   if (correctIndex === -1) {
     console.log('Столбец "correct" не найден.')
     return
-  }
-
-  // Цвета для подсветки
-  const RED_FILL = {
-    type: 'pattern',
-    pattern: 'solid',
-    fgColor: { argb: 'FFFFCCCC' }, // Светло-красный
-  }
-  const YELLOW_FILL = {
-    type: 'pattern',
-    pattern: 'solid',
-    fgColor: { argb: 'FFFFFFCC' }, // Светло-жёлтый
   }
 
   // Пробегаем все строки
@@ -96,12 +93,16 @@ async function highlightCorrectColumn(worksheet) {
     const cell = row.getCell(correctIndex)
     const cellValue = (cell.value || '').toString().trim()
 
-    if (cellValue === 'Нет') {
-      cell.fill = RED_FILL
-      cell.font = { color: { argb: 'FFFF0000' } } // Красный текст
-    } else if (cellValue === 'Спорно') {
-      cell.fill = YELLOW_FILL
-      cell.font = { color: { argb: 'FF996600' } } // Оранжевый текст
+    if (highlightColors[cellValue]) {
+      cell.fill = {
+        type: 'pattern',
+        pattern: 'solid',
+        fgColor: { argb: highlightColors[cellValue].fill },
+      }
+      cell.font = {
+        color: { argb: highlightColors[cellValue].text },
+        size: 10, // Устанавливаем размер шрифта явно
+      }
     }
   })
 

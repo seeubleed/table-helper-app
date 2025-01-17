@@ -1,8 +1,12 @@
 // colors
 $text-color-base: #333;
+$text-color-white: #fff;
 $background-color: #f9f9f9;
 $primary-color: #3498db;
 $secondary-color: #2ecc71;
+
+$button-color: #0073e6;
+$button-color-hover: #005bb5;
 
 // sizes
 $font-size-base: 14px;
@@ -13,7 +17,7 @@ $margin-base: 1rem;
 $font-family: 'Arial', sans-serif;
 
 // other stuff
-$border-radius: 5px;
+$border-radius: 4px;
 $box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
 //mixins

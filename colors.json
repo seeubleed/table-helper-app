@@ -1,0 +1,12 @@
+{
+  "highlightColors": {
+    "Нет": {
+      "fill": "FFcd3318",
+      "text": "FF212121"
+    },
+    "Спорно": {
+      "fill": "FFfff700",
+      "text": "FF3d3d3d"
+    }
+  }
+}

@@ -25,3 +25,11 @@ app.on('activate', () => {
     initialize()
   }
 })
+
+app.on('web-contents-created', (_, contents) => {
+  contents.on('will-navigate', (event, url) => {
+    if (!url.startsWith('https://your-allowed-url.com')) {
+      event.preventDefault()
+    }
+  })
+})

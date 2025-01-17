@@ -17,6 +17,45 @@ document.addEventListener('DOMContentLoaded', async () => {
   const options = await globalThis.electronAPI.loadOptions()
   const map = options.Map
 
+  const settings = await globalThis.electronAPI.loadSettings()
+  const colorsContainer = document.getElementById('colors')
+  const highlightColors = settings.highlightColors || {}
+
+  console.log('Настройки:', settings)
+  console.log('highlightColors:', highlightColors)
+
+  const renderColors = async () => {
+    for (const [key, value] of Object.entries(highlightColors)) {
+      const colorRow = document.createElement('div')
+      colorRow.className = 'color-row'
+      colorRow.innerHTML = `
+          <label>${key}</label>
+          <label>Заливка:</label>
+          <input type="color" id="fill-${key}" value="#${value.fill.slice(2)}" />
+          <label>Шрифт:</label>
+          <input type="color" id="text-${key}" value="#${value.text.slice(2)}" />
+        `
+      colorsContainer.appendChild(colorRow)
+
+      // Асинхронная пауза для предотвращения блокировки интерфейса
+      await new Promise(resolve => setTimeout(resolve, 10))
+    }
+  }
+  await renderColors()
+
+  document.getElementById('saveColors').addEventListener('click', async () => {
+    const updatedColors = {}
+    for (const key of Object.keys(settings.highlightColors)) {
+      updatedColors[key] = {
+        fill: `FF${document.getElementById(`fill-${key}`).value.slice(1)}`,
+        text: `FF${document.getElementById(`text-${key}`).value.slice(1)}`,
+      }
+    }
+    settings.highlightColors = updatedColors
+    await globalThis.electronAPI.saveSettings(settings)
+    alert('Настройки сохранены!')
+  })
+
   // Создание формы
   Object.keys(map).forEach(key => {
     const div = document.createElement('div')
@@ -81,7 +120,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     })
   })
 
-  const checkboxIds = ['toggle-higlight', 'toggle-column-correct', 'toggle-column-comment', 'toggle-higlight-correct', 'toggle-switch_mode_links', 'toggle-switch_mode_links_change']
+  const checkboxIds = ['toggle-higlight', 'toggle-column-correct', 'toggle-column-comment', 'toggle-higlight-correct', 'toggle-switch_mode_links', 'toggle-switch_mode_links_change', 'toggle-rename-titles']
 
   const savedState = await globalThis.electronAPI.loadCheckboxState()
 
@@ -128,6 +167,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         highlightCorrect: checkboxStates['toggle-higlight-correct'],
         switchModeLinks: checkboxStates['toggle-switch_mode_links'],
         switchModeLinksChange: checkboxStates['toggle-switch_mode_links_change'],
+        toggleRenameTitles: checkboxStates['toggle-rename-titles'],
       }
 
       const selectF = await globalThis.electronAPI.selectFile()

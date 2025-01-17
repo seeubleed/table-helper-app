@@ -19,6 +19,9 @@ contextBridge.exposeInMainWorld('electronAPI', {
 
   loadOptions: () => ipcRenderer.invoke('load-options'),
   saveOptions: options => ipcRenderer.invoke('save-options', options),
+
+  loadSettings: async () => await ipcRenderer.invoke('load-settings'),
+  saveSettings: async settings => await ipcRenderer.invoke('save-settings', settings),
 })
 
 contextBridge.exposeInMainWorld('appInfo', {

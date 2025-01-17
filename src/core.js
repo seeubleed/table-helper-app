@@ -40,12 +40,12 @@ async function core(filePath, options) {
     await moveColumnsToEnd(worksheet, ['reason_by_validator_discr'])
   }
 
-  if (options.highlightCorrect) await highlightCorrectColumn(worksheet)
-
   setStaticColWidth(worksheet, 20)
   setFontSize(worksheet, 10, true)
   setHeaderHeight(worksheet, 30)
   setAlignment(worksheet)
+
+  if (options.highlightCorrect) await highlightCorrectColumn(worksheet)
 
   //   await setStats(worksheet)
 
@@ -59,8 +59,10 @@ async function core(filePath, options) {
 
   // await rearrangeColumns(worksheet, orderConfig.columnsOrder)
 
-  const renameMap = loadRenameMap(renameMapPath)
-  renameColumns(worksheet, renameMap.Map)
+  if (options.toggleRenameTitles) {
+    const renameMap = loadRenameMap(renameMapPath)
+    renameColumns(worksheet, renameMap.Map)
+  }
 
   const tempFilePath = path.join(os.tmpdir(), `temp_${Date.now()}.xlsx`)
   await workbook.xlsx.writeFile(tempFilePath)

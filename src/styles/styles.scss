@@ -1,5 +1,4 @@
 @import 'variables';
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
 /* General Reset */
 * {
@@ -41,12 +40,13 @@ body {
   h1 {
     font-size: 26px;
     font-weight: bold;
-    color: #333;
+    color: $text-color-base;
     letter-spacing: 1.2px;
-    padding: 20px 20px 0px 20px;
+    padding: 10px;
   }
 }
 
+//top-right buttons
 .window-controls {
   -webkit-app-region: no-drag;
   position: absolute;
@@ -54,20 +54,20 @@ body {
   right: 10px;
   display: flex;
   gap: 10px;
-}
 
-.control-btn {
-  -webkit-app-region: no-drag;
-  background: none;
-  border: none;
-  color: #333;
-  font-size: 20px;
-  cursor: pointer;
-  transition: color 0.2s;
-
-  &:hover {
+  .control-btn {
     -webkit-app-region: no-drag;
-    color: #0073e6;
+    background: none;
+    border: none;
+    color: $text-color-base;
+    font-size: 20px;
+    cursor: pointer;
+    transition: color 0.2s;
+
+    &:hover {
+      -webkit-app-region: no-drag;
+      color: $button-color-hover;
+    }
   }
 }
 
@@ -77,17 +77,18 @@ body {
   margin: 20px 0;
 
   .btn {
-    background-color: #0073e6;
+    background-color: $button-color;
     color: white;
     padding: 10px 20px;
     font-size: 16px;
     border: none;
-    border-radius: 4px;
+    border-radius: $border-radius;
     cursor: pointer;
+    transform: scale(1);
     transition: transform 0.2s ease, background-color 0.2s ease;
 
     &:hover {
-      background-color: #005bb5;
+      background-color: $button-color-hover;
       transform: scale(1.1);
     }
 
@@ -294,8 +295,8 @@ main {
   .tabs {
     display: flex;
     align-items: center; /* Выравнивание по вертикали */
-    background-color: #f9f9f9;
-    border-radius: 5px;
+    background-color: $background-color;
+    border-radius: $border-radius;
     // border-bottom: 1px solid #ddd;
     padding: 10px;
 
@@ -303,19 +304,26 @@ main {
       padding: 8px 16px;
       background-color: #f0f0f0;
       border: none;
+      border-radius: $border-radius;
       font-size: 14px;
       cursor: pointer;
-      //   transition: background-color 0.3s, border-bottom 0.3s;
-      margin-right: 10px;
-
-      &.active {
-        background-color: #0073e6;
-        color: white;
-        // border-bottom: 3px solid #005bb5;
-      }
+      transition: transform 0.1s ease, background-color 0.1s ease;
+      margin-right: 8px;
 
       &:hover {
         background-color: #e0e0e0;
+        transform: scale(1.05);
+      }
+
+      &.active {
+        background-color: $button-color;
+        color: white;
+        transform: scale(1);
+        box-shadow: 0 2px 5px rgba(0, 115, 230, 0.2);
+      }
+
+      &:active {
+        transform: scale(1);
       }
     }
   }
@@ -337,7 +345,7 @@ main {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* Три колонки одинаковой ширины */
   gap: 10px; /* Отступы между элементами */
-  padding: 10px;
+  //   padding: 10px;
   //   border: 1px solid #ccc;
   border-radius: 4px;
   max-height: 280px; /* Ограничение высоты */
@@ -372,4 +380,62 @@ main {
 
 #saveButton:hover {
   background-color: #005ea6;
+}
+
+/* Контейнер для цвета */
+#colors {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+
+  .color-row {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+
+    label {
+      font-size: $font-size-base;
+      color: $text-color-base;
+      min-width: 100px;
+    }
+
+    input[type='color'] {
+      appearance: none; /* Убираем стандартный стиль */
+      -webkit-appearance: none; /* Для браузеров на основе WebKit */
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+      background-color: transparent;
+      transition: transform 0.3s ease, box-shadow 0.3s ease; /* Плавность анимации */
+
+      &::-webkit-color-swatch-wrapper {
+        padding: 0;
+      }
+
+      &::-webkit-color-swatch {
+        border: none;
+        border-radius: 50%;
+      }
+
+      &:hover {
+        transform: scale(1.1); /* Увеличение при наведении */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень для эффекта "подъема" */
+      }
+
+      &:active {
+        transform: scale(1); /* Возвращение к изначальному размеру при нажатии */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Тень при нажатии */
+      }
+    }
+  }
 }

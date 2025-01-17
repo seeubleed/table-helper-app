@@ -4,5 +4,6 @@
   "toggle-column-comment": false,
   "toggle-higlight-correct": true,
   "toggle-switch_mode_links": true,
-  "toggle-switch_mode_links_change": true
+  "toggle-switch_mode_links_change": true,
+  "toggle-rename-titles": true
 }
