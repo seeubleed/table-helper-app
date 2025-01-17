@@ -20,3 +20,9 @@ contextBridge.exposeInMainWorld('electronAPI', {
   loadOptions: () => ipcRenderer.invoke('load-options'),
   saveOptions: options => ipcRenderer.invoke('save-options', options),
 })
+
+contextBridge.exposeInMainWorld('appInfo', {
+  getVersion: async () => {
+    return await ipcRenderer.invoke('get-app-version')
+  },
+})

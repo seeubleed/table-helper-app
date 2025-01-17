@@ -1,0 +1,23 @@
+// colors
+$text-color-base: #333;
+$background-color: #f9f9f9;
+$primary-color: #3498db;
+$secondary-color: #2ecc71;
+
+// sizes
+$font-size-base: 14px;
+$padding-base: 1rem;
+$margin-base: 1rem;
+
+// fonts
+$font-family: 'Arial', sans-serif;
+
+// other stuff
+$border-radius: 5px;
+$box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+//mixins
+@mixin formatBase($margin: 20px, $padding: 20px) {
+  margin: $margin;
+  padding: $padding;
+}

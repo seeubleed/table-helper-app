@@ -10,6 +10,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   const settingsContainer = document.getElementById('settingsContainer')
   const saveButton = document.getElementById('saveButton')
 
+  const appVersion = await globalThis.appInfo.getVersion()
+  document.getElementById('app-version').textContent = `Версия: ${appVersion}`
+
   // Загрузка текущих настроек
   const options = await globalThis.electronAPI.loadOptions()
   const map = options.Map
