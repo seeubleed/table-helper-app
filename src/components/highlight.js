@@ -1,7 +1,6 @@
-const fs = require('fs')
 const path = require('path')
 const settingsPath = path.join(process.cwd(), 'colors.json')
-const { loadJSON, saveJSON } = require('./jsonHandler')
+const { loadJSON, saveJSON } = require('../utils/jsonHandler')
 
 async function highlightDuplicates(worksheet) {
   if (!worksheet) throw new Error('Лист не определён.')

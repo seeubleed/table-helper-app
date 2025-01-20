@@ -1,3 +1,18 @@
+const AppAPI = {
+  getVersion: () => globalThis.appInfo.getVersion(),
+  loadOptions: () => globalThis.electronAPI.loadOptions(),
+  saveOptions: options => globalThis.electronAPI.saveOptions(options),
+  loadSettings: () => globalThis.electronAPI.loadSettings(),
+  saveSettings: settings => globalThis.electronAPI.saveSettings(settings),
+  selectFile: () => globalThis.electronAPI.selectFile(),
+  processFile: (filePath, ext, options) => globalThis.electronAPI.processFile(filePath, ext, options),
+  saveFile: tempFilePath => globalThis.electronAPI.saveFile(tempFilePath),
+  loadCheckboxState: () => globalThis.electronAPI.loadCheckboxState(),
+  saveCheckboxState: state => globalThis.electronAPI.saveCheckboxState(state),
+  minimizeWindow: () => globalThis.electronAPI.minimizeWindow(),
+  closeWindow: () => globalThis.electronAPI.closeWindow(),
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
   const minimizeButton = document.getElementById('minimize')
   const closeButton = document.getElementById('close')
@@ -10,38 +25,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   const settingsContainer = document.getElementById('settingsContainer')
   const saveButton = document.getElementById('saveButton')
 
-  const appVersion = await globalThis.appInfo.getVersion()
+  const appVersion = await AppAPI.getVersion()
   document.getElementById('app-version').textContent = `Версия: ${appVersion}`
 
-  // Загрузка текущих настроек
-  const options = await globalThis.electronAPI.loadOptions()
-  const map = options.Map
-
-  const settings = await globalThis.electronAPI.loadSettings()
+  const settings = await AppAPI.loadSettings()
   const colorsContainer = document.getElementById('colors')
   const highlightColors = settings.highlightColors || {}
-
-  console.log('Настройки:', settings)
-  console.log('highlightColors:', highlightColors)
-
-  const renderColors = async () => {
-    for (const [key, value] of Object.entries(highlightColors)) {
-      const colorRow = document.createElement('div')
-      colorRow.className = 'color-row'
-      colorRow.innerHTML = `
-          <label>${key}</label>
-          <label>Заливка:</label>
-          <input type="color" id="fill-${key}" value="#${value.fill.slice(2)}" />
-          <label>Шрифт:</label>
-          <input type="color" id="text-${key}" value="#${value.text.slice(2)}" />
-        `
-      colorsContainer.appendChild(colorRow)
-
-      // Асинхронная пауза для предотвращения блокировки интерфейса
-      await new Promise(resolve => setTimeout(resolve, 10))
-    }
-  }
-  await renderColors()
+  await renderColors(colorsContainer, highlightColors)
 
   document.getElementById('saveColors').addEventListener('click', async () => {
     const updatedColors = {}
@@ -55,6 +45,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     await globalThis.electronAPI.saveSettings(settings)
     alert('Настройки сохранены!')
   })
+
+  // Загрузка текущих настроек
+  const options = await AppAPI.loadOptions()
+  const map = options.Map
 
   // Создание формы
   Object.keys(map).forEach(key => {
@@ -82,18 +76,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     alert('Настройки сохранены!')
   })
 
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      // Удаляем активный класс у всех вкладок и секций
-      tabs.forEach(t => t.classList.remove('active'))
-      sections.forEach(section => section.classList.remove('active'))
-
-      // Добавляем активный класс к выбранной вкладке и секции
-      tab.classList.add('active')
-      const targetId = tab.getAttribute('data-tab')
-      document.getElementById(targetId).classList.add('active')
-    })
-  })
+  initializeTabs(tabs, sections)
 
   globalThis.electronAPI.onUpdateAvailable(() => {
     const notificationArea = document.getElementById('notification-area')
@@ -120,41 +103,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     })
   })
 
+  minimizeButton.addEventListener('click', () => AppAPI.minimizeWindow())
+  closeButton.addEventListener('click', () => AppAPI.closeWindow())
+
   const checkboxIds = ['toggle-higlight', 'toggle-column-correct', 'toggle-column-comment', 'toggle-higlight-correct', 'toggle-switch_mode_links', 'toggle-switch_mode_links_change', 'toggle-rename-titles']
 
-  const savedState = await globalThis.electronAPI.loadCheckboxState()
-
-  checkboxIds.forEach(id => {
-    const checkbox = document.getElementById(id)
-    if (checkbox) {
-      checkbox.checked = savedState[id] ?? false
-      checkbox.addEventListener('change', saveState)
-    }
-  })
-
-  async function saveState() {
-    const state = getCheckboxStates()
-    await globalThis.electronAPI.saveCheckboxState(state)
-  }
-
-  function getCheckboxStates() {
-    const states = {}
-    checkboxIds.forEach(id => {
-      const checkbox = document.getElementById(id)
-      if (checkbox) {
-        states[id] = checkbox.checked
-      }
-    })
-    return states
-  }
-
-  minimizeButton.addEventListener('click', () => {
-    globalThis.electronAPI.minimizeWindow()
-  })
-
-  closeButton.addEventListener('click', () => {
-    globalThis.electronAPI.closeWindow()
-  })
+  const getCheckboxStates = initializeCheckboxes(checkboxIds)
 
   processButton.addEventListener('click', async () => {
     try {
@@ -170,7 +124,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         toggleRenameTitles: checkboxStates['toggle-rename-titles'],
       }
 
-      const selectF = await globalThis.electronAPI.selectFile()
+      const selectF = await AppAPI.selectFile()
       if (selectF.error) {
         updateLog(`Ошибка: ${selectF.error}`)
         return
@@ -180,15 +134,20 @@ document.addEventListener('DOMContentLoaded', async () => {
         updateLog(`filePath отсутствует`)
         return
       }
+      const ext = selectF.ext
+      if (!ext) {
+        updateLog(`Расширение файла отсутствует`)
+        return
+      }
 
       // show loading bar
-      loadingIndicator.style.display = 'flex'
+      showElement(loadingIndicator, 'flex')
 
       // core process
-      const processResult = await globalThis.electronAPI.processFile(filePath, options)
+      const processResult = await AppAPI.processFile(filePath, ext, options)
 
       // hide loading bar
-      loadingIndicator.style.display = 'none'
+      hideElement(loadingIndicator)
 
       if (processResult.error) {
         updateLog(`Ошибка: ${processResult.error}`)
@@ -197,7 +156,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         updateLog(`Файл успешно обработан`)
       }
 
-      const resultSave = await globalThis.electronAPI.saveFile(processResult.tempFilePath)
+      const resultSave = await AppAPI.saveFile(processResult.tempFilePath)
 
       if (resultSave.error) {
         updateLog(`Ошибка: ${resultSave.error}`)
@@ -212,10 +171,78 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   })
 
+  function initializeCheckboxes(checkboxIds) {
+    ;(async () => {
+      const savedState = await AppAPI.loadCheckboxState()
+      checkboxIds.forEach(id => {
+        const checkbox = document.getElementById(id)
+        if (checkbox) {
+          checkbox.checked = savedState[id] ?? false
+          checkbox.addEventListener('change', saveState)
+        }
+      })
+    })()
+
+    const saveState = async () => {
+      const state = getCheckboxStates()
+      await globalThis.electronAPI.saveCheckboxState(state)
+    }
+
+    function getCheckboxStates() {
+      return checkboxIds.reduce((states, id) => {
+        const checkbox = document.getElementById(id)
+        if (checkbox) states[id] = checkbox.checked
+        return states
+      }, {})
+    }
+
+    return getCheckboxStates
+  }
+
+  function initializeTabs(tabs, sections) {
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        toggleActiveClass(tabs, 'active', tab)
+
+        const targetId = tab.getAttribute('data-tab')
+        sections.forEach(section => {
+          section.classList.toggle('active', section.id === targetId)
+        })
+      })
+    })
+  }
+
+  function toggleActiveClass(elements, activeClass, targetElement) {
+    elements.forEach(el => el.classList.remove(activeClass))
+    targetElement.classList.add(activeClass)
+  }
+
+  async function renderColors(colorsContainer, highlightColors) {
+    Object.entries(highlightColors).forEach(([key, value]) => {
+      const colorRow = document.createElement('div')
+      colorRow.className = 'color-row'
+      colorRow.innerHTML = `
+        <label>${key}</label>
+        <label>Заливка:</label>
+        <input type="color" id="fill-${key}" value="#${value.fill.slice(2)}" />
+        <label>Шрифт:</label>
+        <input type="color" id="text-${key}" value="#${value.text.slice(2)}" />
+      `
+      colorsContainer.appendChild(colorRow)
+    })
+  }
+
+  function showElement(element, display = 'block') {
+    element.style.display = display
+  }
+
+  function hideElement(element) {
+    element.style.display = 'none'
+  }
+
   function updateLog(message) {
     const outputElement = document.getElementById('output')
     outputElement.textContent = message
-
     outputElement.style.display = message.trim() ? 'block' : 'none'
   }
 })

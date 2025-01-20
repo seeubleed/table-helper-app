@@ -1,12 +1,13 @@
 const { dialog } = require('electron')
 const logger = require('../logger')
+const path = require('path')
 
 async function handleSelectFile() {
   try {
     logger.info('Выбор файла')
     const { canceled, filePaths } = await dialog.showOpenDialog({
       title: 'Выберите файл Excel',
-      filters: [{ name: 'Excel Files', extensions: ['xlsx'] }],
+      filters: [{ name: 'Excel Files', extensions: ['xlsx', 'csv'] }],
       properties: ['openFile'],
     })
 
@@ -16,9 +17,17 @@ async function handleSelectFile() {
     }
 
     const filePath = filePaths[0] // Берём первый путь
-    logger.info(`Выбранный файл: ${filePath}`)
+    const ext = path.extname(filePath).toLowerCase()
+    console.log(filePath)
+    console.log(ext)
 
-    return { success: true, filePath } // Возвращаем путь
+    switch (ext) {
+      case '.xlsx':
+      case '.csv':
+        return { success: true, filePath, ext }
+      default:
+        throw new Error(`Unsupported file format: ${ext}`)
+    }
   } catch (error) {
     logger.error('Ошибка при выборе файла:', error)
     return { error: error.message }

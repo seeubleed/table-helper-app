@@ -1,8 +1,8 @@
 const { ipcMain, BrowserWindow } = require('electron')
 const path = require('path')
 const { loadJSON, saveJSON } = require('./utils/jsonHandler')
-const handleSelectFile = require('./utils/selectFile')
-const handleSaveFile = require('./utils/saveFile')
+const handleSelectFile = require('./file/selectFile')
+const handleSaveFile = require('./file/saveFile')
 const core = require('./core')
 
 const { version } = require('../package.json')
@@ -35,9 +35,9 @@ const registerIpcHandlers = () => {
   ipcMain.handle('save-file', async (_, tempFilePath) => {
     return handleSaveFile(tempFilePath)
   })
-  ipcMain.handle('process-file', async (_, filePath, options) => {
+  ipcMain.handle('process-file', async (_, filePath, ext, options) => {
     try {
-      const tempFilePath = await core(filePath, options)
+      const tempFilePath = await core(filePath, ext, options)
       return { success: true, tempFilePath }
     } catch (error) {
       return { error: error.message }
