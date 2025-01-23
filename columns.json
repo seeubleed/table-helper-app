@@ -40,6 +40,10 @@
     "visible": true
   },
   {
+    "name": "right_answer_ER2",
+    "visible": false
+  },
+  {
     "name": "availability_assessor",
     "visible": false
   },
