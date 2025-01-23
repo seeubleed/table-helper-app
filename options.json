@@ -1,12 +1,12 @@
 {
   "Map": {
-    "assesors_task": "Link to task",
-    "validator_task_ext": "Link to change",
-    "assessor": "assessor",
+    "assesors_task": "Ссылка на задачу",
+    "validator_task_ext": "Ссылка на смену ответа",
+    "assessor": "Performer's name",
     "assessor_date": "Date",
     "validator": "Имя валидатора",
     "validation_date": "Дата проверки",
-    "right_answer_ER1": "ER1",
+    "right_answer_ER1": "Correct?",
     "right_answer_ER2": "ER2",
     "availability_assessor": "availability_assessor",
     "price_assessor": "price_assessor",

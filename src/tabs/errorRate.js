@@ -1,3 +1,5 @@
+const global = require('../global')
+
 const { setFontSize, setHeaderHeight } = require('../utils/fontSize')
 const { DateTime } = require('luxon')
 const logger = require('../logger')
@@ -13,9 +15,9 @@ async function errorRate(sourceWorksheet) {
   // Инициализируем данные
   const headerRow = sourceWorksheet.getRow(1)
   const columnIndices = {
-    asessor: headerRow.values.indexOf('asessor::multi-filter'),
-    correct: headerRow.values.indexOf('correct'),
-    asCreated: headerRow.values.indexOf('as_created'),
+    asessor: headerRow.values.indexOf(global.assessor_name),
+    correct: headerRow.values.indexOf(global.right_answer_ER1),
+    asCreated: headerRow.values.indexOf(global.assessor_date),
   }
 
   if (Object.values(columnIndices).some(index => index === -1)) {

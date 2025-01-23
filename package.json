@@ -1,6 +1,6 @@
 {
   "name": "table_helper_app",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Обработчик xlsx файлов",
   "main": "src/main.js",
   "scripts": {

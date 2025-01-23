@@ -81,7 +81,7 @@ async function highlightCorrectColumn(worksheet) {
   console.log(highlightColors)
 
   const headerRow = worksheet.getRow(1)
-  const correctIndex = headerRow.values.findIndex(value => value === 'correct')
+  const correctIndex = headerRow.values.findIndex(value => value === global.right_answer_ER1)
   if (correctIndex === -1) {
     console.log('Столбец "correct" не найден.')
     return

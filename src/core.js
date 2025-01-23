@@ -6,12 +6,10 @@ const fs = require('fs')
 const sortByDate = require('./components/sort')
 const { highlightDuplicates, highlightCorrectColumn } = require('./components/highlight')
 const updateLinks = require('./utils/updateLinks')
-const updateAnswers = require('./utils/updateAnswers')
-const moveColumnsToEnd = require('./utils/moveColumns')
+// const updateAnswers = require('./utils/updateAnswers')
 const { setStaticColWidth } = require('./utils/colWidth')
 const { setFontSize, setHeaderHeight, setAlignment } = require('./utils/fontSize')
 const updateDates = require('./utils/formatDate')
-const removeColumns = require('./utils/removeColumns')
 const { loadRenameMap, renameColumns } = require('./utils/renameColumns')
 
 const renameMapPath = path.join(process.cwd(), 'options.json')
@@ -32,20 +30,6 @@ async function core(filePath, ext, options) {
 
   //   updateAnswers(worksheet)
 
-  //   if (options.toggleColumnCorrect) {
-  //     await moveColumnsToEnd(worksheet, ['correct'])
-  //   }
-
-  //   if (options.toggleColumnComment) {
-  //     await moveColumnsToEnd(worksheet, ['comment_by_validator'])
-  //     await moveColumnsToEnd(worksheet, ['validator_Причина'])
-  //     await moveColumnsToEnd(worksheet, ['validator_Причина по стоимости'])
-  //     await moveColumnsToEnd(worksheet, ['reason_by_validator'])
-  //     await moveColumnsToEnd(worksheet, ['reason_by_validator_avail'])
-  //     await moveColumnsToEnd(worksheet, ['reason_by_validator_price'])
-  //     await moveColumnsToEnd(worksheet, ['reason_by_validator_discr'])
-  //   }
-
   const orderConfigPath = path.join(process.cwd(), 'columns.json')
   const orderConfig = JSON.parse(fs.readFileSync(orderConfigPath, 'utf8'))
   await rearrangeColumns(worksheet, orderConfig)
@@ -55,19 +39,13 @@ async function core(filePath, ext, options) {
   setHeaderHeight(worksheet, 30)
   setAlignment(worksheet)
 
-  //   if (options.highlightCorrect) await highlightCorrectColumn(worksheet)
+  if (options.highlightCorrect) await highlightCorrectColumn(worksheet)
 
-  //   if (options.toggleErrorRateTab) {
-  //     await errorRateTab(worksheet)
-  //   }
+  if (options.toggleErrorRateTab) {
+    await errorRateTab(worksheet)
+  }
 
   await updateDates(worksheet)
-
-  //   await processWorksheet(worksheet)
-
-  //   removeColumns(worksheet)
-
-  //   const orderConfig = JSON.parse(fs.readFileSync('./columnsOrder.json', 'utf-8'))
 
   if (options.toggleRenameTitles) {
     const renameMap = loadRenameMap(renameMapPath)

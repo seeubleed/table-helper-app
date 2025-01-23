@@ -101,6 +101,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         visible: item.querySelector('input').checked,
       }))
       console.log('Сохраненный порядок:', result)
+      alert('Настройки сохранены!')
 
       // Сохраняем через main
       globalThis.electronAPI.saveColumns(result)
@@ -182,7 +183,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   minimizeButton.addEventListener('click', () => AppAPI.minimizeWindow())
   closeButton.addEventListener('click', () => AppAPI.closeWindow())
 
-  const checkboxIds = ['toggle-higlight', 'toggle-column-correct', 'toggle-column-comment', 'toggle-higlight-correct', 'toggle-switch_mode_links', 'toggle-switch_mode_links_change', 'toggle-rename-titles', 'toggle-errorRate-tab']
+  const checkboxIds = ['toggle-higlight', 'toggle-higlight-correct', 'toggle-switch_mode_links', 'toggle-switch_mode_links_change', 'toggle-rename-titles', 'toggle-errorRate-tab']
 
   const getCheckboxStates = initializeCheckboxes(checkboxIds)
 
@@ -191,8 +192,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       const checkboxStates = getCheckboxStates()
 
       const options = {
-        toggleColumnCorrect: checkboxStates['toggle-column-correct'],
-        toggleColumnComment: checkboxStates['toggle-column-comment'],
         highlight: checkboxStates['toggle-higlight'],
         highlightCorrect: checkboxStates['toggle-higlight-correct'],
         switchModeLinks: checkboxStates['toggle-switch_mode_links'],
