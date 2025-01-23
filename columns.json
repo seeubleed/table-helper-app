@@ -1,0 +1,90 @@
+[
+  {
+    "name": "assessor",
+    "visible": true
+  },
+  {
+    "name": "validator",
+    "visible": true
+  },
+  {
+    "name": "assessor_date",
+    "visible": true
+  },
+  {
+    "name": "right_answer_ER1",
+    "visible": true
+  },
+  {
+    "name": "validators_task",
+    "visible": true
+  },
+  {
+    "name": "validation_date",
+    "visible": true
+  },
+  {
+    "name": "assesor_project",
+    "visible": true
+  },
+  {
+    "name": "validator_task_ext",
+    "visible": true
+  },
+  {
+    "name": "availability_assessor",
+    "visible": false
+  },
+  {
+    "name": "price_assessor",
+    "visible": false
+  },
+  {
+    "name": "quality_assesor",
+    "visible": false
+  },
+  {
+    "name": "discrimination_assesor",
+    "visible": false
+  },
+  {
+    "name": "validation_project",
+    "visible": false
+  },
+  {
+    "name": "availability_validator",
+    "visible": false
+  },
+  {
+    "name": "price_validator",
+    "visible": false
+  },
+  {
+    "name": "quality_validator",
+    "visible": false
+  },
+  {
+    "name": "discrimination_validato",
+    "visible": false
+  },
+  {
+    "name": "comment_by_validator",
+    "visible": false
+  },
+  {
+    "name": "reason_by_validator_avail",
+    "visible": false
+  },
+  {
+    "name": "reason_by_validator_price",
+    "visible": false
+  },
+  {
+    "name": "reason_by_validator_discr",
+    "visible": false
+  },
+  {
+    "name": "doubt",
+    "visible": false
+  }
+]

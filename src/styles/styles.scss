@@ -27,8 +27,6 @@ body {
   position: relative;
 }
 
-/* Window Controls */
-
 /* Header */
 .header {
   display: flex;
@@ -46,6 +44,7 @@ body {
   }
 }
 
+/* Window Controls */
 //top-right buttons
 .window-controls {
   -webkit-app-region: no-drag;
@@ -156,7 +155,7 @@ main {
 /* Options */
 .options {
   margin: 20px 0;
-  padding: 15px;
+  padding: $padding-base;
   background-color: #f9f9f9;
   //   border: 1px solid #ddd;
   border-radius: 4px;
@@ -172,7 +171,7 @@ main {
 
   .option-group {
     margin-bottom: 5px;
-    display: flex;
+    // display: flex;
     align-items: center;
     gap: 4px;
 
@@ -225,7 +224,6 @@ main {
   align-items: center;
   gap: 10px;
   padding: 10px;
-  //   background-color: rgba(0, 0, 0, 0.8);
   color: white;
   font-size: 14px;
   font-family: Arial, sans-serif;
@@ -288,7 +286,7 @@ main {
 
 .tab-container {
   display: flex;
-  flex-direction: column; /* Вкладки сверху, содержимое снизу */
+  flex-direction: column;
   width: 100%;
   //   height: 100%;
 
@@ -343,20 +341,18 @@ main {
 
 #settingsContainer {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Три колонки одинаковой ширины */
-  gap: 10px; /* Отступы между элементами */
-  //   padding: 10px;
-  //   border: 1px solid #ccc;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
   border-radius: 4px;
-  max-height: 280px; /* Ограничение высоты */
-  overflow-y: auto; /* Прокрутка для большого количества элементов */
-  background-color: #f9f9f9; /* Легкий фон для выделения */
+  max-height: 280px;
+  overflow-y: auto;
+  background-color: #f9f9f9;
 }
 
 #settingsContainer label {
   display: flex;
-  flex-direction: column; /* Название и поле ввода располагаются вертикально */
-  font-size: 14px; /* Компактный шрифт */
+  flex-direction: column;
+  font-size: 14px;
 }
 
 #settingsContainer input[type='text'] {
@@ -367,15 +363,20 @@ main {
   font-size: 14px;
 }
 
-#saveButton {
+.button-group-settings {
+  text-align: center;
   margin-top: 10px;
-  padding: 10px;
-  background-color: #0078d4;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  width: 100%; /* Кнопка занимает всю ширину */
+
+  #saveButton {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #0078d4;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    // width: 100%;
+  }
 }
 
 #saveButton:hover {
@@ -396,7 +397,7 @@ main {
     padding: 10px;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
-    border-radius: 8px;
+    border-radius: $border-radius;
 
     label {
       font-size: $font-size-base;
@@ -406,7 +407,7 @@ main {
 
     input[type='color'] {
       appearance: none; /* Убираем стандартный стиль */
-      -webkit-appearance: none; /* Для браузеров на основе WebKit */
+      -webkit-appearance: none;
       border: none;
       border-radius: 50%;
       width: 40px;
@@ -416,7 +417,7 @@ main {
       position: relative;
       overflow: hidden;
       background-color: transparent;
-      transition: transform 0.3s ease, box-shadow 0.3s ease; /* Плавность анимации */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
 
       &::-webkit-color-swatch-wrapper {
         padding: 0;
@@ -428,14 +429,116 @@ main {
       }
 
       &:hover {
-        transform: scale(1.1); /* Увеличение при наведении */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень для эффекта "подъема" */
+        transform: scale(1.1);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       }
 
       &:active {
-        transform: scale(1); /* Возвращение к изначальному размеру при нажатии */
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Тень при нажатии */
+        transform: scale(1);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
       }
+    }
+  }
+}
+
+#columnsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); // Автоматическое распределение колонок
+  gap: 10px;
+  //   padding: $padding-base;
+  border-radius: $border-radius;
+  background-color: #f9f9f9;
+
+  label.column-item {
+    position: relative; // Для позиционирования индикатора
+    display: flex;
+    flex-direction: column; // Расположение содержимого
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border: 1px solid #ddd; // Рамка элемента
+    border-radius: 4px; // Скругление углов
+    background-color: #fff; // Белый фон
+    cursor: pointer; // Указатель
+    transition: background-color 0.2s ease, border-color 0.2s ease; // Анимация при наведении
+
+    &:hover {
+      background-color: #f0f0f0; // Фон при наведении
+    }
+
+    input[type='checkbox'] {
+      display: none; // Скрываем стандартный чекбокс
+    }
+
+    // Стили для состояния "checked" применяются на сам label
+    input[type='checkbox']:checked ~ & {
+      background-color: #e0f7fa; // Цвет фона всего элемента
+      border-color: #007bff; // Цвет рамки
+    }
+
+    span {
+      font-size: 14px; // Размер текста
+      color: #333; // Цвет текста
+    }
+
+    // Стили текста при "checked"
+    input[type='checkbox']:checked + span {
+      color: #007bff; // Цвет текста при включении
+    }
+
+    &.dragging {
+      opacity: 0.8; // Прозрачность при перетаскивании
+      transform: scale(1.05); // Увеличение при перетаскивании
+      z-index: 10; // Поверх остальных элементов
+    }
+  }
+
+  .drop-indicator {
+    height: 4px;
+    width: 100%;
+    background-color: #007bff;
+    position: relative;
+    margin: 5px 0;
+    border-radius: 2px;
+    transition: background-color 0.2s ease;
+  }
+
+  /* Стиль для элемента-призрака */
+  .sortable-ghost {
+    opacity: 0.5; // Прозрачность призрака
+    background-color: #f9f9f9; // Фон при перетаскивании
+  }
+
+  /* Стиль для выбранного элемента */
+  .sortable-chosen {
+    background-color: #e0f7fa; // Цвет выбранного элемента
+    transform: scale(1.2); // Увеличение при перетаскивании
+  }
+
+  /* Стиль для области вставки */
+  .drop-target {
+    border: 2px dashed #007bff; // Область вставки с пунктирной рамкой
+    background-color: rgba(0, 123, 255, 0.1); // Легкая подсветка
+    transition: background-color 0.2s ease; // Плавное изменение фона
+  }
+}
+
+.button-group {
+  text-align: center; // Центрирование кнопок
+  margin-top: 10px; // Отступ сверху
+
+  button#saveColumns {
+    padding: 10px 20px; // Внутренний отступ кнопки
+    background-color: #007bff; // Цвет кнопки
+    color: #fff; // Цвет текста
+    border: none; // Убираем рамку
+    border-radius: 4px; // Скругление углов
+    cursor: pointer; // Указатель курсора
+    font-size: 14px; // Размер шрифта
+    transition: background-color 0.2s ease; // Анимация при наведении
+
+    &:hover {
+      background-color: #0056b3; // Цвет кнопки при наведении
     }
   }
 }

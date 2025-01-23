@@ -6,8 +6,8 @@ async function handleSelectFile() {
   try {
     logger.info('Выбор файла')
     const { canceled, filePaths } = await dialog.showOpenDialog({
-      title: 'Выберите файл Excel',
-      filters: [{ name: 'Excel Files', extensions: ['xlsx', 'csv'] }],
+      title: 'Выберите файл',
+      filters: [{ name: 'Excel и CSV', extensions: ['xlsx', 'csv'] }],
       properties: ['openFile'],
     })
 
@@ -16,17 +16,15 @@ async function handleSelectFile() {
       return { error: 'Файл не был выбран.' }
     }
 
-    const filePath = filePaths[0] // Берём первый путь
+    const filePath = filePaths[0]
     const ext = path.extname(filePath).toLowerCase()
-    console.log(filePath)
-    console.log(ext)
 
     switch (ext) {
       case '.xlsx':
       case '.csv':
         return { success: true, filePath, ext }
       default:
-        throw new Error(`Unsupported file format: ${ext}`)
+        return { error: `Unsupported file format: ${ext}` }
     }
   } catch (error) {
     logger.error('Ошибка при выборе файла:', error)

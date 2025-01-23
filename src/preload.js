@@ -22,6 +22,10 @@ contextBridge.exposeInMainWorld('electronAPI', {
 
   loadSettings: async () => await ipcRenderer.invoke('load-settings'),
   saveSettings: async settings => await ipcRenderer.invoke('save-settings', settings),
+
+  loadColumns: () => ipcRenderer.invoke('load-columns'),
+  updateColumnsOrder: data => ipcRenderer.invoke('update-columns-order', data),
+  saveColumns: data => ipcRenderer.invoke('save-columns', data),
 })
 
 contextBridge.exposeInMainWorld('appInfo', {

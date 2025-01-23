@@ -1,6 +1,8 @@
+const global = require('../global')
+
 async function sortByDate(worksheet) {
   const headerRow = worksheet.getRow(1).values.slice(1)
-  const asCreatedIndex = headerRow.indexOf('as_created') + 1
+  const asCreatedIndex = headerRow.indexOf(global.assessor_date) + 1
 
   if (!worksheet) throw new Error('sheet is not defined')
   if (asCreatedIndex === -1) throw new Error(`no columns found: "${asCreatedIndex}"`)

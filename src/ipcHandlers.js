@@ -1,5 +1,6 @@
 const { ipcMain, BrowserWindow } = require('electron')
 const path = require('path')
+const fs = require('fs')
 const { loadJSON, saveJSON } = require('./utils/jsonHandler')
 const handleSelectFile = require('./file/selectFile')
 const handleSaveFile = require('./file/saveFile')
@@ -10,6 +11,8 @@ const { version } = require('../package.json')
 const settingsPath = path.join(process.cwd(), 'settings.json')
 const colorsPath = path.join(process.cwd(), 'colors.json')
 const optionsPath = path.join(process.cwd(), 'options.json')
+
+const columnsFilePath = path.join(process.cwd(), 'columns.json')
 
 const registerIpcHandlers = () => {
   ipcMain.handle('load-options', () => loadJSON(optionsPath))
@@ -56,6 +59,28 @@ const registerIpcHandlers = () => {
 
   ipcMain.handle('get-app-version', () => {
     return version
+  })
+
+  // Загружаем сохранённые данные или создаём по умолчанию
+  ipcMain.handle('load-columns', () => {
+    if (fs.existsSync(columnsFilePath)) {
+      return JSON.parse(fs.readFileSync(columnsFilePath, 'utf8'))
+    }
+    return Array.from({ length: 23 }, (_, i) => ({ name: `Column ${i + 1}`, visible: true }))
+  })
+
+  // Обработчик для обновления порядка колонок
+  ipcMain.handle('update-columns-order', (event, updatedColumns) => {
+    console.log('Получен новый порядок колонок:', updatedColumns)
+    fs.writeFileSync(columnsFilePath, JSON.stringify(updatedColumns, null, 2))
+    return true // Возврат успешного результата
+  })
+
+  // Обработчик для сохранения колонок
+  ipcMain.handle('save-columns', (event, savedColumns) => {
+    console.log('Сохраненные колонки:', savedColumns)
+    fs.writeFileSync(columnsFilePath, JSON.stringify(savedColumns, null, 2))
+    return true // Возврат успешного результата
   })
 }
 

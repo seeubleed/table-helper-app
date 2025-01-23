@@ -1,3 +1,5 @@
+const global = require('../global')
+
 const path = require('path')
 const settingsPath = path.join(process.cwd(), 'colors.json')
 const { loadJSON, saveJSON } = require('../utils/jsonHandler')
@@ -6,8 +8,8 @@ async function highlightDuplicates(worksheet) {
   if (!worksheet) throw new Error('Лист не определён.')
 
   const headerRow = worksheet.getRow(1)
-  const taskIdIndex = headerRow.values.findIndex(value => value === 'as_task_id')
-  const createdIndex = headerRow.values.findIndex(value => value === 'asessor::multi-filter')
+  const taskIdIndex = headerRow.values.findIndex(value => value === global.assessor_task)
+  const createdIndex = headerRow.values.findIndex(value => value === global.assessor_name)
 
   if (taskIdIndex === -1 || createdIndex === -1) {
     console.log('Один из указанных столбцов не найден.')

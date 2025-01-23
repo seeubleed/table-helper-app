@@ -28,6 +28,7 @@
             <button class="tab-btn" data-tab="tab-2">Настройки</button>
             <button class="tab-btn" data-tab="tab-3">Заголовки</button>
             <button class="tab-btn" data-tab="tab-4">Цвета</button>
+            <button class="tab-btn" data-tab="tab-5">Колонки</button>
           </div>
           <!-- Секции -->
           <div class="tab-content">
@@ -67,7 +68,7 @@
                 <div class="option-group">
                   <label>
                     <input type="checkbox" id="toggle-higlight" />
-                    Подсветка дублирующих строк
+                    Подсветка дублирующих задач
                   </label>
                 </div>
 
@@ -75,6 +76,13 @@
                   <label>
                     <input type="checkbox" id="toggle-higlight-correct" />
                     Подсветка "Нет, Спорно"
+                  </label>
+                </div>
+
+                <div class="option-group">
+                  <label>
+                    <input type="checkbox" id="toggle-errorRate-tab" />
+                    Лист "Состав"
                   </label>
                 </div>
 
@@ -105,7 +113,9 @@
                   <label>
                     <form id="settingsForm">
                       <div id="settingsContainer"></div>
-                      <button type="button" id="saveButton">Сохранить</button>
+                      <div class="button-group-settings">
+                        <button type="button" id="saveButton">Сохранить</button>
+                      </div>
                     </form>
                   </label>
                 </div>
@@ -120,6 +130,18 @@
                 </div>
 
                 <button id="saveColors">Сохранить цвета</button>
+              </div>
+            </div>
+
+            <div id="tab-5" class="tab-section">
+              <div class="options">
+                <h2>Настройка колонок</h2>
+                <div class="column-group">
+                  <div id="columnsContainer"></div>
+                  <div class="button-group">
+                    <button id="saveColumns">Сохранить</button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

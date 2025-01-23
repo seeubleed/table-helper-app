@@ -1,4 +1,7 @@
-async function rearrangeColumns(worksheet, columnsOrder) {
+async function rearrangeColumns(worksheet, columnsData) {
+  // Извлекаем только видимые колонки
+  const visibleColumns = columnsData.filter(col => col.visible).map(col => col.name)
+
   const originalHeaders = worksheet.getRow(1).values.slice(1) // Извлекаем текущие заголовки (с индексом сдвига)
   const newData = []
 
@@ -6,11 +9,11 @@ async function rearrangeColumns(worksheet, columnsOrder) {
   worksheet.eachRow((row, rowIndex) => {
     if (rowIndex === 1) {
       // Заголовки
-      newData.push(columnsOrder.map(colName => colName || ''))
+      newData.push(visibleColumns.map(colName => colName || ''))
     } else {
       // Остальные строки
       newData.push(
-        columnsOrder.map(colName => {
+        visibleColumns.map(colName => {
           const columnIndex = originalHeaders.indexOf(colName) + 1
           return columnIndex > 0 ? row.getCell(columnIndex).value : null
         })
@@ -19,7 +22,6 @@ async function rearrangeColumns(worksheet, columnsOrder) {
   })
 
   // Очищаем старый лист
-  //   worksheet.spliceRows(1, worksheet.rowCount)
   while (worksheet.rowCount > 0) {
     worksheet.spliceRows(1, 1)
   }
@@ -33,4 +35,4 @@ async function rearrangeColumns(worksheet, columnsOrder) {
   worksheet.eachRow(row => row.commit())
 }
 
-module.exports = { rearrangeColumns }
+module.exports = rearrangeColumns

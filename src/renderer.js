@@ -33,6 +33,82 @@ document.addEventListener('DOMContentLoaded', async () => {
   const highlightColors = settings.highlightColors || {}
   await renderColors(colorsContainer, highlightColors)
 
+  const script = document.createElement('script')
+  script.src = './libs/Sortable.js' // Загрузка Sortable.js
+  document.body.appendChild(script)
+
+  script.onload = async () => {
+    const container = document.getElementById('columnsContainer')
+
+    // Загружаем данные из main
+    const columns = await globalThis.electronAPI.loadColumns()
+
+    // Создаем элементы
+    columns.forEach((column, index) => {
+      const columnItem = document.createElement('label') // Изменяем <div> на <label>
+      columnItem.classList.add('column-item')
+      columnItem.dataset.index = index
+      columnItem.innerHTML = `
+      <input type="checkbox" id="col_${index}" ${column.visible ? 'checked' : ''}>
+      <span>${column.name}</span>
+    ` // Добавляем <span> для текста
+
+      // Событие изменения состояния чекбокса
+      columnItem.querySelector('input').addEventListener('change', e => {
+        const checked = e.target.checked
+        if (checked) {
+          columnItem.classList.add('checked') // Добавляем класс при включении
+        } else {
+          columnItem.classList.remove('checked') // Убираем класс при выключении
+        }
+      })
+
+      container.appendChild(columnItem)
+    })
+
+    // Инициализация Sortable.js
+    const sortable = new Sortable(container, {
+      animation: 150,
+      ghostClass: 'sortable-ghost', // Класс для элемента-призрака
+      chosenClass: 'sortable-chosen', // Класс для выбранного элемента
+      onStart: evt => {
+        evt.item.classList.add('dragging')
+      },
+      onEnd: evt => {
+        evt.item.classList.remove('dragging')
+        updateOrder() // Обновляем порядок после завершения
+      },
+    })
+
+    // Обновление порядка
+    function updateOrder() {
+      const items = Array.from(container.children)
+      const updatedColumns = items.map(item => ({
+        name: item.querySelector('span').textContent,
+        visible: item.querySelector('input').checked,
+      }))
+      console.log('Обновленный порядок:', updatedColumns)
+
+      // Передаем данные в main
+      globalThis.electronAPI.updateColumnsOrder(updatedColumns)
+    }
+
+    // Сохранение порядка
+    document.getElementById('saveColumns').addEventListener('click', () => {
+      const items = Array.from(container.children)
+      const result = items.map(item => ({
+        name: item.querySelector('span').textContent,
+        visible: item.querySelector('input').checked,
+      }))
+      console.log('Сохраненный порядок:', result)
+
+      // Сохраняем через main
+      globalThis.electronAPI.saveColumns(result)
+    })
+  }
+
+  ///////////////////////////////////////////
+
   document.getElementById('saveColors').addEventListener('click', async () => {
     const updatedColors = {}
     for (const key of Object.keys(settings.highlightColors)) {
@@ -106,7 +182,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   minimizeButton.addEventListener('click', () => AppAPI.minimizeWindow())
   closeButton.addEventListener('click', () => AppAPI.closeWindow())
 
-  const checkboxIds = ['toggle-higlight', 'toggle-column-correct', 'toggle-column-comment', 'toggle-higlight-correct', 'toggle-switch_mode_links', 'toggle-switch_mode_links_change', 'toggle-rename-titles']
+  const checkboxIds = ['toggle-higlight', 'toggle-column-correct', 'toggle-column-comment', 'toggle-higlight-correct', 'toggle-switch_mode_links', 'toggle-switch_mode_links_change', 'toggle-rename-titles', 'toggle-errorRate-tab']
 
   const getCheckboxStates = initializeCheckboxes(checkboxIds)
 
@@ -122,6 +198,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         switchModeLinks: checkboxStates['toggle-switch_mode_links'],
         switchModeLinksChange: checkboxStates['toggle-switch_mode_links_change'],
         toggleRenameTitles: checkboxStates['toggle-rename-titles'],
+        toggleErrorRateTab: checkboxStates['toggle-errorRate-tab'],
       }
 
       const selectF = await AppAPI.selectFile()
@@ -202,12 +279,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   function initializeTabs(tabs, sections) {
     tabs.forEach(tab => {
       tab.addEventListener('click', () => {
-        toggleActiveClass(tabs, 'active', tab)
-
         const targetId = tab.getAttribute('data-tab')
-        sections.forEach(section => {
-          section.classList.toggle('active', section.id === targetId)
-        })
+        toggleActiveClass(tabs, 'active', tab)
+        toggleActiveClass(sections, 'active', document.getElementById(targetId))
       })
     })
   }

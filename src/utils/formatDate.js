@@ -1,9 +1,10 @@
 const { DateTime } = require('luxon')
+const global = require('../global')
 
 async function updateDates(worksheet) {
   const headerRow = worksheet.getRow(1).values.slice(1)
-  const asCreatedIndex = headerRow.indexOf('as_created') + 1
-  const valCreatedIndex = headerRow.indexOf('val_created') + 1
+  const asCreatedIndex = headerRow.indexOf(global.assessor_date) + 1
+  const valCreatedIndex = headerRow.indexOf(global.validation_date) + 1
 
   if (asCreatedIndex === 0 || valCreatedIndex === 0) {
     console.warn('Одна или несколько колонок не найдены в заголовке.')

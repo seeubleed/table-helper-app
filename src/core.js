@@ -1,6 +1,7 @@
 const ExcelJS = require('exceljs')
 const path = require('path')
 const os = require('os')
+const fs = require('fs')
 
 const sortByDate = require('./components/sort')
 const { highlightDuplicates, highlightCorrectColumn } = require('./components/highlight')
@@ -12,13 +13,14 @@ const { setFontSize, setHeaderHeight, setAlignment } = require('./utils/fontSize
 const updateDates = require('./utils/formatDate')
 const removeColumns = require('./utils/removeColumns')
 const { loadRenameMap, renameColumns } = require('./utils/renameColumns')
+
 const renameMapPath = path.join(process.cwd(), 'options.json')
 
-async function core(filePath, ext, options) {
-  console.log('FilePath:', filePath)
-  console.log('Extension:', ext)
-  console.log('Options:', options)
+const rearrangeColumns = require('./utils/reorderColumns')
 
+const errorRateTab = require('./tabs/errorRate')
+
+async function core(filePath, ext, options) {
   const workbook = await loadWorkbook(filePath, ext)
   const worksheet = prepareWorksheet(workbook)
 
@@ -28,40 +30,44 @@ async function core(filePath, ext, options) {
 
   await updateLinks(worksheet, options.switchModeLinks, options.switchModeLinksChange)
 
-  updateAnswers(worksheet)
+  //   updateAnswers(worksheet)
 
-  if (options.toggleColumnCorrect) {
-    await moveColumnsToEnd(worksheet, ['correct'])
-  }
+  //   if (options.toggleColumnCorrect) {
+  //     await moveColumnsToEnd(worksheet, ['correct'])
+  //   }
 
-  if (options.toggleColumnComment) {
-    await moveColumnsToEnd(worksheet, ['comment_by_validator'])
-    await moveColumnsToEnd(worksheet, ['validator_Причина'])
-    await moveColumnsToEnd(worksheet, ['validator_Причина по стоимости'])
-    await moveColumnsToEnd(worksheet, ['reason_by_validator'])
-    await moveColumnsToEnd(worksheet, ['reason_by_validator_avail'])
-    await moveColumnsToEnd(worksheet, ['reason_by_validator_price'])
-    await moveColumnsToEnd(worksheet, ['reason_by_validator_discr'])
-  }
+  //   if (options.toggleColumnComment) {
+  //     await moveColumnsToEnd(worksheet, ['comment_by_validator'])
+  //     await moveColumnsToEnd(worksheet, ['validator_Причина'])
+  //     await moveColumnsToEnd(worksheet, ['validator_Причина по стоимости'])
+  //     await moveColumnsToEnd(worksheet, ['reason_by_validator'])
+  //     await moveColumnsToEnd(worksheet, ['reason_by_validator_avail'])
+  //     await moveColumnsToEnd(worksheet, ['reason_by_validator_price'])
+  //     await moveColumnsToEnd(worksheet, ['reason_by_validator_discr'])
+  //   }
+
+  const orderConfigPath = path.join(process.cwd(), 'columns.json')
+  const orderConfig = JSON.parse(fs.readFileSync(orderConfigPath, 'utf8'))
+  await rearrangeColumns(worksheet, orderConfig)
 
   setStaticColWidth(worksheet, 20)
   setFontSize(worksheet, 10, true)
   setHeaderHeight(worksheet, 30)
   setAlignment(worksheet)
 
-  if (options.highlightCorrect) await highlightCorrectColumn(worksheet)
+  //   if (options.highlightCorrect) await highlightCorrectColumn(worksheet)
 
-  //   await setStats(worksheet)
+  //   if (options.toggleErrorRateTab) {
+  //     await errorRateTab(worksheet)
+  //   }
 
   await updateDates(worksheet)
 
   //   await processWorksheet(worksheet)
 
-  removeColumns(worksheet)
+  //   removeColumns(worksheet)
 
   //   const orderConfig = JSON.parse(fs.readFileSync('./columnsOrder.json', 'utf-8'))
-
-  // await rearrangeColumns(worksheet, orderConfig.columnsOrder)
 
   if (options.toggleRenameTitles) {
     const renameMap = loadRenameMap(renameMapPath)
@@ -88,7 +94,7 @@ async function loadWorkbook(filePath, ext) {
     await workbook.xlsx.readFile(filePath)
   }
 
-  const worksheet = workbook.getWorksheet(1) // Получение первого листа
+  const worksheet = workbook.getWorksheet(1)
 
   // Обработка данных в ячейках
   worksheet.eachRow(row => {
@@ -120,7 +126,7 @@ function formatDate(date) {
 function prepareWorksheet(workbook) {
   const worksheet = workbook.worksheets[0]
   if (!worksheet) throw new Error('Sheet not found')
-  worksheet.name = 'data'
+  worksheet.name = 'Данные'
   return worksheet
 }
 

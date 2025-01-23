@@ -1,11 +1,13 @@
+const logger = require('../logger')
+
 async function updateLinks(worksheet, toggleSwitchModeLinks, toggleSwitchModeLinksChange) {
   const headerRow = worksheet.getRow(1).values.slice(1)
 
-  const taskExtIdIndex = headerRow.indexOf('task_ext_id') + 1
-  const valProjectIndex = headerRow.indexOf('val_project') + 1
+  const taskExtIdIndex = headerRow.indexOf('validator_task_ext') + 1
+  const valProjectIndex = headerRow.indexOf('validation_project') + 1
 
-  const asTaskIdIndex = headerRow.indexOf('as_task_id') + 1
-  const projectToValIndex = headerRow.indexOf('project_to_val') + 1
+  const asTaskIdIndex = headerRow.indexOf('assesors_task') + 1
+  const projectToValIndex = headerRow.indexOf('assesor_project') + 1
 
   if (taskExtIdIndex === 0 || valProjectIndex === 0) {
     logger.error('no columns found: "task_ext_id" & "val_project", skipping')
