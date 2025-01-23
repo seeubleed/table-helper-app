@@ -508,7 +508,7 @@ main {
 
     // Стили для состояния "checked" применяются на сам label
     input[type='checkbox']:checked ~ & {
-      background-color: #e0f7fa; // Цвет фона всего элемента
+      background-color: #89f1ff; // Цвет фона всего элемента
       border-color: #007bff; // Цвет рамки
     }
 

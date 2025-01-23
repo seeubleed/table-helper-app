@@ -24,7 +24,6 @@
     "electron-builder": "^25.1.8"
   },
   "build": {
-    "asar": true,
     "appId": "com.seeubleed.tablehelperapp",
     "productName": "table_helper_app",
     "files": [
