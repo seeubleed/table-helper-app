@@ -31,9 +31,12 @@
       "node_modules/**/*",
       "src/html/index.html",
       "src/styles/styles.css",
-      "dist/**/*",
-      "!dist/mac-universal-x64-temp/*",
-      "!dist/mac-universal-arm64-temp/*"
+      "!dist/**/*",
+      "!dist/mac-universal-x64-temp/**/*",
+      "!dist/mac-universal-arm64-temp/**/*",
+      "!dist/*.dmg",
+      "!dist/*.exe",
+      "!dist/*.zip"
     ],
     "extraFiles": [
       {
