@@ -7,6 +7,7 @@ const { loadJSON, saveJSON } = require('./utils/jsonHandler')
 const handleSelectFile = require('./file/selectFile')
 const handleSaveFile = require('./file/saveFile')
 const core = require('./core')
+const logger = require('./logger')
 
 const { version } = require('../package.json')
 
@@ -14,6 +15,10 @@ const settingsPath = path.join(process.resourcesPath, 'settings.json')
 const colorsPath = path.join(process.resourcesPath, 'colors.json')
 const optionsPath = path.join(process.resourcesPath, 'options.json')
 const columnsFilePath = path.join(process.resourcesPath, 'columns.json')
+
+logger.info('Settings Path:', settingsPath)
+logger.info('Colors Path:', colorsPath)
+logger.info('Options Path:', optionsPath)
 
 const registerIpcHandlers = () => {
   ipcMain.handle('load-options', () => loadJSON(optionsPath))

@@ -12,7 +12,7 @@ const { setFontSize, setHeaderHeight, setAlignment } = require('./utils/fontSize
 const updateDates = require('./utils/formatDate')
 const { loadRenameMap, renameColumns } = require('./utils/renameColumns')
 
-const renameMapPath = path.join(process.cwd(), 'options.json')
+const renameMapPath = path.join(process.resourcesPath, 'options.json')
 
 const rearrangeColumns = require('./utils/reorderColumns')
 
@@ -30,7 +30,7 @@ async function core(filePath, ext, options) {
 
   //   updateAnswers(worksheet)
 
-  const orderConfigPath = path.join(process.cwd(), 'columns.json')
+  const orderConfigPath = path.join(process.resourcesPath, 'columns.json')
   const orderConfig = JSON.parse(fs.readFileSync(orderConfigPath, 'utf8'))
   await rearrangeColumns(worksheet, orderConfig)
 

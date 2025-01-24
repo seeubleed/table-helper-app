@@ -9,7 +9,7 @@
     "electron-builder": "electron-builder"
   },
   "author": "seeubleed",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "dependencies": {
     "@electron/remote": "^2.1.2",
     "electron-updater": "^6.3.9",
