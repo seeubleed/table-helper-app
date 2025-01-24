@@ -42,6 +42,18 @@
       {
         "from": "options.json",
         "to": "./options.json"
+      },
+      {
+        "from": "colors.json",
+        "to": "./colors.json"
+      },
+      {
+        "from": "columns.json",
+        "to": "./columns.json"
+      },
+      {
+        "from": "settings.json",
+        "to": "./settings.json"
       }
     ],
     "directories": {
