@@ -19,6 +19,7 @@
     "comment_by_validator": "comment_by_validator",
     "reason_by_validator_avail": "reason_by_validator_avail",
     "reason_by_validator_discr": "reason_by_validator_discr",
-    "reason_by_validator_price": "reason_by_validator_price"
+    "reason_by_validator_price": "reason_by_validator_price",
+    "doubt": "doubt"
   }
 }
