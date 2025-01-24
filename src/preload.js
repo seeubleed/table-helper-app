@@ -14,6 +14,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
   loadCheckboxState: () => ipcRenderer.invoke('load-checkbox-state'),
 
   onUpdateAvailable: callback => ipcRenderer.on('update_available', callback),
+  onUpdateProgress: callback => ipcRenderer.on('update-progress', (event, progress) => callback(progress)),
   onUpdateDownloaded: callback => ipcRenderer.on('update_downloaded', callback),
   restartApp: () => ipcRenderer.send('restart_app'),
 

@@ -51,9 +51,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       columnItem.innerHTML = `
       <input type="checkbox" id="col_${index}" ${column.visible ? 'checked' : ''}>
       <span>${column.name}</span>
-    ` // Добавляем <span> для текста
+    `
 
-      // Событие изменения состояния чекбокса
       columnItem.querySelector('input').addEventListener('change', e => {
         const checked = e.target.checked
         if (checked) {
@@ -66,7 +65,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       container.appendChild(columnItem)
     })
 
-    // Инициализация Sortable.js
     const sortable = new Sortable(container, {
       animation: 150,
       ghostClass: 'sortable-ghost', // Класс для элемента-призрака
@@ -80,7 +78,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       },
     })
 
-    // Обновление порядка
     function updateOrder() {
       const items = Array.from(container.children)
       const updatedColumns = items.map(item => ({
@@ -93,7 +90,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       globalThis.electronAPI.updateColumnsOrder(updatedColumns)
     }
 
-    // Сохранение порядка
     document.getElementById('saveColumns').addEventListener('click', () => {
       const items = Array.from(container.children)
       const result = items.map(item => ({
@@ -163,6 +159,36 @@ document.addEventListener('DOMContentLoaded', async () => {
       </div>
     `
     notificationArea.classList.add('show')
+  })
+
+  globalThis.electronAPI.onUpdateProgress(progress => {
+    const percent = progress.percent.toFixed(2)
+
+    let progressBarContainer = document.getElementById('progress-bar-container')
+    if (!progressBarContainer) {
+      // Создаем структуру прогресс-бара, если её нет
+      const notificationArea = document.getElementById('progress-area')
+
+      progressBarContainer = document.createElement('div')
+      progressBarContainer.id = 'progress-bar-container'
+
+      const progressBarFill = document.createElement('div')
+      progressBarFill.id = 'progress-bar-fill'
+
+      const progressText = document.createElement('div')
+      progressText.id = 'progress-text'
+
+      // Добавляем элементы в контейнер
+      progressBarContainer.appendChild(progressBarFill)
+      progressBarContainer.appendChild(progressText)
+      notificationArea.appendChild(progressBarContainer)
+    }
+
+    const progressBarFill = document.getElementById('progress-bar-fill')
+    const progressText = document.getElementById('progress-text')
+
+    progressBarFill.style.width = `${percent}%`
+    progressText.textContent = `${percent}%`
   })
 
   globalThis.electronAPI.onUpdateDownloaded(() => {

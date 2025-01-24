@@ -1,6 +1,6 @@
 {
   "name": "table_helper_app",
-  "version": "0.7.0",
+  "version": "0.5.0",
   "description": "Обработчик xlsx файлов",
   "main": "src/main.js",
   "scripts": {
@@ -38,22 +38,22 @@
       "!dist/*.exe",
       "!dist/*.zip"
     ],
-    "extraFiles": [
+    "extraResources": [
       {
         "from": "options.json",
-        "to": "./options.json"
+        "to": "options.json"
       },
       {
         "from": "colors.json",
-        "to": "./colors.json"
+        "to": "colors.json"
       },
       {
         "from": "columns.json",
-        "to": "./columns.json"
+        "to": "columns.json"
       },
       {
         "from": "settings.json",
-        "to": "./settings.json"
+        "to": "settings.json"
       }
     ],
     "directories": {

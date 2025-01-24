@@ -1,7 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
 const { autoUpdater } = require('electron-updater')
 
-const initialize = require('./windows/mainWindow')
+const { initialize } = require('./windows/mainWindow')
 const registerIpcHandlers = require('./ipcHandlers')
 
 app.on('ready', () => {
